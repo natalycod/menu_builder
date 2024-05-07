@@ -1,0 +1,286 @@
+paths:
+    /build_menu:
+        post:
+            description: Ручка для построения меню
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/requests/BuildMenuRequest'
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/responses/BuildMenuResponse'
+
+    /get_menu:
+        get:
+            description: Получить меню по id
+            parameters:
+              - name: menu_id
+                description: id меню
+                in: query
+                required: true
+                schema:
+                    type: string
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/responses/GetMenuResponse'
+
+    /calendar/save_menu:
+        post:
+            description: Ручка для сохранения меню на определенную дату
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/requests/CalendarSaveMenuRequest'
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/responses/EmptyResponse'
+
+    /calendar/get_menues:
+        get:
+            description: Получить меню по id
+            parameters:
+              - name: user_id
+                in: query
+                required: true
+                schema:
+                    type: string
+              - name: date_start
+                description: DD.MM.YYYY
+                in: query
+                required: true
+                schema:
+                    type: string
+              - name: date_end
+                description: DD.MM.YYYY
+                in: query
+                required: true
+                schema:
+                    type: string
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/responses/CalendarGetMenuesResponse'
+
+    /calendar/delete_menu:
+        post:
+            description: Ручка для удаления меню с даты
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/requests/CalendarDeleteMenuRequest'
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/responses/EmptyResponse'
+
+    /calendar/get_grocery_list:
+        get:
+            description: Получить меню по id
+            parameters:
+              - name: user_id
+                in: query
+                required: true
+                schema:
+                    type: string
+              - name: date_start
+                description: DD.MM.YYYY
+                in: query
+                required: true
+                schema:
+                    type: string
+              - name: date_end
+                description: DD.MM.YYYY
+                in: query
+                required: true
+                schema:
+                    type: string
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/responses/CalendarGetGroceryListResponse'
+
+
+components:
+    requests:
+        BuildMenuRequest:
+            type: object
+            required:
+              - calories
+            properties:
+                calories:
+                    type: array
+                    items:
+                        type: float
+                    minItems: 1
+                breakfast_id:
+                    type: string
+                lunch_id:
+                    type: string
+                dinner_id:
+                    type: string
+        
+        CalendarSaveMenuRequest:
+            type: object
+            required:
+              - user_id
+              - menu_id
+              - date
+            properties:
+                user_id:
+                    type: string
+                menu_id:
+                    type: string
+                date:
+                    type: string
+                    description: DD.MM.YYYY format
+        
+        CalendarDeleteMenuRequest:
+            type: object
+            required:
+              - user_id
+              - date
+            properties:
+                user_id:
+                    type: string
+                menu_id:
+                    type: string
+                date:
+                    type: string
+                    description: DD.MM.YYYY format
+
+    responses:
+        EmptyResponse:
+            type: object
+
+        BuildMenuResponse:
+            type: object
+            properties:
+                menu_id:
+                    type: string
+                nutrition:
+                    $ref: '#/components/schemas/Nutrition'
+                breakfast_info:
+                    $ref: '#/components/schemas/Meal'
+                lunch_info:
+                    $ref: '#/components/schemas/Meal'
+                dinner_info:
+                    $ref: '#/components/schemas/Meal'
+
+        GetMenuResponse:
+            type: object
+            properties:
+                menu_id:
+                    type: string
+                nutrition:
+                    $ref: '#/components/schemas/Nutrition'
+                breakfast_info:
+                    $ref: '#/components/schemas/Meal'
+                lunch_info:
+                    $ref: '#/components/schemas/Meal'
+                dinner_info:
+                    $ref: '#/components/schemas/Meal'
+        
+        CalendarGetMenuesResponse:
+            type: array
+            items:
+                type: object
+                properties:
+                    date:
+                        description: DD.MM.YYYY
+                        type: string
+                    menu:
+                        $ref: '#/components/schemas/Menu'
+
+        CalendarGetGroceryListResponse:
+            type: array
+            items:
+                $ref: '#/components/schemas/Ingredient'
+
+    schemas:
+        Nutrition:
+            type: object
+            properties:
+                calories:
+                    type: float
+                carbohydrates:
+                    type: float
+                fats:
+                    type: float
+                proteins:
+                    type: float
+        
+        Ingredient:
+            type: object
+            properties:
+                food_id:
+                    type: string
+                food_name:
+                    type: string
+                food_url:
+                    type: string
+                unit:
+                    type: string
+                    enum:
+                      - g
+                      - ml
+                unit_amount:
+                    type: float
+                nutrition:
+                    $ref: '#/components/schemas/Nutrition'
+        
+        Meal:
+            type: object
+            properties:
+                recipe_id:
+                    type: string
+                recipe_name:
+                    type: string
+                recipe_url:
+                    type: string
+                nutrition:
+                    $ref: '#/components/schemas/Nutrition'
+                ingredients:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Ingredient'
+
+        Menu:
+            type: object
+            properties:
+                menu_id:
+                    type: string
+                nutrition:
+                    $ref: '#/components/schemas/Nutrition'
+                breakfast_info:
+                    $ref: '#/components/schemas/Meal'
+                lunch_info:
+                    $ref: '#/components/schemas/Meal'
+                dinner_info:
+                    $ref: '#/components/schemas/Meal'
