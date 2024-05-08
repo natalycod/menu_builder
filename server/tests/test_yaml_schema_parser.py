@@ -1,9 +1,6 @@
 import pytest
 
-import sys
-sys.path.append('../utils')
-
-import yaml_schema_parser
+import server.utils.yaml_schema_parser as yaml_schema_parser
 
 
 yaml_schemas = yaml_schema_parser.read_yaml('static/yaml_parser_schemas.yaml')
