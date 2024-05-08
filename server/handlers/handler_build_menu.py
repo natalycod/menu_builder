@@ -3,7 +3,7 @@ import random
 import db_utils
 
 from data_classes import Recipe, Menu, serialize_menu_to_json
-import knapsack_algo
+import utils.knapsack_algo as knapsack_algo
 
 MAX_CALORIES_DIFF = 0.2
 CARBS_L, CARBS_R = 10, 15
