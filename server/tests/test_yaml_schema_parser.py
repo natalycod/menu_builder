@@ -3,7 +3,7 @@ import pytest
 import server.utils.yaml_schema_parser as yaml_schema_parser
 
 
-yaml_schemas = yaml_schema_parser.read_yaml('static/yaml_parser_schemas.yaml')
+yaml_objects = yaml_schema_parser.read_yaml('static/yaml_parser_objects.yaml')
 
 
 @pytest.mark.parametrize(
@@ -16,7 +16,7 @@ yaml_schemas = yaml_schema_parser.read_yaml('static/yaml_parser_schemas.yaml')
     ]
 )
 def test_string_value(value, expected_result):
-    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_schemas, yaml_schemas['SimpleString'])
+    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_objects, yaml_objects['SimpleString'])
     assert result == expected_result
 
 
@@ -29,7 +29,7 @@ def test_string_value(value, expected_result):
     ]
 )
 def test_int_value(value, expected_result):
-    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_schemas, yaml_schemas['SimpleInt'])
+    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_objects, yaml_objects['SimpleInt'])
     assert result == expected_result
 
 
@@ -43,7 +43,7 @@ def test_int_value(value, expected_result):
     ]
 )
 def test_float_value(value, expected_result):
-    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_schemas, yaml_schemas['SimpleFloat'])
+    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_objects, yaml_objects['SimpleFloat'])
     assert result == expected_result
 
 @pytest.mark.parametrize(
@@ -55,7 +55,7 @@ def test_float_value(value, expected_result):
     ]
 )
 def test_int_array(value, expected_result):
-    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_schemas, yaml_schemas['IntArray'])
+    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_objects, yaml_objects['IntArray'])
     assert result == expected_result
 
 @pytest.mark.parametrize(
@@ -68,7 +68,7 @@ def test_int_array(value, expected_result):
     ]
 )
 def test_simple_object(value, expected_result):
-    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_schemas, yaml_schemas['SimpleObject'])
+    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_objects, yaml_objects['SimpleObject'])
     assert result == expected_result
 
 @pytest.mark.parametrize(
@@ -98,7 +98,7 @@ def test_simple_object(value, expected_result):
     ]
 )
 def test_recursive_object(value, expected_result):
-    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_schemas, yaml_schemas['RecursiveObject'])
+    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_objects, yaml_objects['RecursiveObject'])
     assert result == expected_result
 
 @pytest.mark.parametrize(
@@ -110,7 +110,7 @@ def test_recursive_object(value, expected_result):
     ]
 )
 def test_ref_int(value, expected_result):
-    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_schemas, yaml_schemas['RefInt'])
+    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_objects, yaml_objects['RefInt'])
     assert result == expected_result
 
 @pytest.mark.parametrize(
@@ -121,7 +121,7 @@ def test_ref_int(value, expected_result):
     ]
 )
 def test_ref_component(value, expected_result):
-    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_schemas, yaml_schemas['RefComponent'])
+    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_objects, yaml_objects['RefComponent'])
     assert result == expected_result
 
 @pytest.mark.parametrize(
@@ -132,5 +132,18 @@ def test_ref_component(value, expected_result):
     ]
 )
 def test_ref_recursive(value, expected_result):
-    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_schemas, yaml_schemas['RefRecursive'])
+    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_objects, yaml_objects['RefRecursive'])
+    assert result == expected_result
+
+
+@pytest.mark.parametrize(
+    ('response_code', 'value','expected_result'),
+    [
+        pytest.param('200', {}, {}),
+        pytest.param('200', {'param1': 123.45, 'param2': 123.45, 'param3': [123.45, '123']}, {'param1': '123.45', 'param2': 123.45, 'param3': [123, 123]}),
+        pytest.param('400', {'param1': 123.45, 'param2': 123.45, 'param3': [123.45, '123']}, {}),
+    ]
+)
+def test_test_handler(response_code, value, expected_result):
+    result = yaml_schema_parser.parse_json_to_handler_response(value, '/test_handler', 'post', response_code, 'static/yaml_parser_api.yaml')
     assert result == expected_result

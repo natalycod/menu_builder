@@ -1,0 +1,39 @@
+paths:
+    /test_handler:
+        post:
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/requests/TestHandlerRequest'
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/responses/TestHandlerResponse'
+                "400":
+                    description: Bad Request
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/responses/EmptyResponse'
+
+
+components:
+    responses:
+        EmptyResponse:
+            type: object
+        TestHandlerResponse:
+            type: object
+            properties:
+                param1:
+                    type: string
+                param2:
+                    type: float
+                param3:
+                    type: array
+                    items:
+                        type: int
