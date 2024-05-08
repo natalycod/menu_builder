@@ -1,11 +1,11 @@
 from flask import Flask, request
 
-import handler_build_menu
-import handler_calendar_delete_menu
-import handler_calendar_get_grocery_list
-import handler_calendar_get_menues
-import handler_calendar_save_menu
-import handler_get_menu
+import handlers.handler_build_menu as handler_build_menu
+import handlers.handler_calendar_delete_menu as handler_calendar_delete_menu
+import handlers.handler_calendar_get_grocery_list as handler_calendar_get_grocery_list
+import handlers.handler_calendar_get_menues as handler_calendar_get_menues
+import handlers.handler_calendar_save_menu as handler_calendar_save_menu
+import handlers.handler_get_menu as handler_get_menu
 
 
 app = Flask("knapsack_app")
