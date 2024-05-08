@@ -1,8 +1,8 @@
 import json
 
 import db_utils
-from data_classes import serialize_menu_to_json
 
+import utils.yaml_schema_parser as yaml_schema_parser
 
 
 def main(params):
@@ -14,4 +14,4 @@ def main(params):
         menu.recipes[i].recipe_name = extra_data.recipe_name
         # menu.recipes[i].ingredients = extra_data.ingredients
 
-    return serialize_menu_to_json(menu)
+    return yaml_schema_parser.parse_json_to_handler_response(menu.to_json(), '/get_menu', 'get')

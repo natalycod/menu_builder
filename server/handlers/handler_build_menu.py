@@ -1,9 +1,9 @@
 import json
 import random
-import db_utils
 
-from data_classes import Recipe, Menu, serialize_menu_to_json
+import db_utils
 import utils.knapsack_algo as knapsack_algo
+import utils.yaml_schema_parser as yaml_schema_parser
 
 MAX_CALORIES_DIFF = 0.2
 CARBS_L, CARBS_R = 10, 15
@@ -35,7 +35,7 @@ def prepare_recipes(recipes : list, ideal_calories : float, cnt : int):
     result = []
     for recipe in recipes:
         for cal in cal_goals:
-            mult = cal / recipe.calories
+            mult = cal / recipe.nutrition.calories
             result.append(recipe * mult)
 
     return result
@@ -67,4 +67,4 @@ def main(body):
     menu.id = db_utils.generate_id()
     db_utils.save_menu(menu)
 
-    return serialize_menu_to_json(menu)
+    return yaml_schema_parser.parse_json_to_handler_response(menu.to_json(), '/build_menu', 'post')

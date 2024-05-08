@@ -4,8 +4,7 @@ import sqlite3
 
 from sqlite3 import Error
 
-from data_classes import Recipe, Menu, Ingredient
-from data_classes import serialize_recipe, deserialize_recipe
+from data_classes import Recipe, Menu, Ingredient, Nutrition
 
 INGREDIENTS_PATH = "databases/ingredients.sqlite"
 RECIPES_PATH = "databases/recipes.sqlite"
@@ -49,7 +48,7 @@ def save_menu(menu : Menu):
     connection.commit()
 
     cursor.execute('INSERT INTO Menues (id, calories, carbohydrates, fats, proteins, breakfast_info, lunch_info, dinner_info, ingredients) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                   (menu.id, menu.calories, menu.carbohydrates, menu.fats, menu.proteins, serialize_recipe(menu.recipes[0]), serialize_recipe(menu.recipes[1]), serialize_recipe(menu.recipes[2]), json.dumps([])))
+                   (menu.id, menu.nutrition.calories, menu.nutrition.carbohydrates, menu.nutrition.fats, menu.nutrition.proteins, json.dumps(menu.recipes[0].to_json()), json.dumps(menu.recipes[1].to_json()), json.dumps(menu.recipes[2].to_json()), json.dumps([])))
     connection.commit()
 
     connection.close()
@@ -66,7 +65,7 @@ def get_menu(menu_id: str) -> Menu:
         result.carbohydrates = menu[2]
         result.fats = menu[3]
         result.proteins = menu[4]
-        result.recipes = [deserialize_recipe(menu[5]), deserialize_recipe(menu[6]), deserialize_recipe(menu[7])]
+        result.recipes = [Recipe(js=json.loads(menu[5])), Recipe(js=json.loads(menu[6])), Recipe(js=json.loads(menu[7]))]
         return result
     connection.close()
 
@@ -83,8 +82,10 @@ def get_random_recipes(type: str, amount: int):
     for recipe in recipes:
         ingredients = []
         for ingr in json.loads(recipe[7]):
-            ingredients.append(Ingredient(id=ingr['food_id'], name=ingr['food_name'], url=ingr['ingredient_url'], calories=ingr['calories'], carbs=ingr['carbohydrates'], fats=ingr['fats'], prots=ingr['proteins'], unit=ingr['measurement_unit'], unit_amount=ingr['number_of_units']))
-        recipe = Recipe(recipe_id=recipe[0], calories=recipe[1], carbs=recipe[2], fats=recipe[3], proteins=recipe[4], recipe_url=recipe[5], recipe_name=recipe[6], ingredients=ingredients)
+            nutrition = Nutrition(ingr['calories'], ingr['carbohydrates'], ingr['fats'], ingr['proteins'])
+            ingredients.append(Ingredient(ingr['food_id'], ingr['food_name'], ingr['ingredient_url'], nutrition, ingr['measurement_unit'], ingr['number_of_units']))
+        nutrition = Nutrition(recipe[1], recipe[2], recipe[3], recipe[4])
+        recipe = Recipe(recipe_id=recipe[0], nutrition=nutrition, recipe_url=recipe[5], recipe_name=recipe[6], ingredients=ingredients)
         result.append(recipe)
     return result
 
@@ -98,8 +99,10 @@ def get_recipe_by_id(recipe_id : str):
     for recipe in recipes:
         ingredients = []
         for ingr in json.loads(recipe[7]):
-            ingredients.append(Ingredient(id=ingr['food_id'], name=ingr['food_name'], url=ingr['ingredient_url'], calories=ingr['calories'], carbs=ingr['carbohydrates'], fats=ingr['fats'], prots=ingr['proteins'], unit=ingr['measurement_unit'], unit_amount=ingr['number_of_units']))
-        recipe = Recipe(recipe_id=recipe[0], calories=recipe[1], carbs=recipe[2], fats=recipe[3], proteins=recipe[4], recipe_url=recipe[5], recipe_name=recipe[6], ingredients=ingredients)
+            nutrition = Nutrition(ingr['calories'], ingr['carbohydrates'], ingr['fats'], ingr['proteins'])
+            ingredients.append(Ingredient(ingr['food_id'], ingr['food_name'], ingr['ingredient_url'], nutrition, ingr['measurement_unit'], ingr['number_of_units']))
+        nutrition = Nutrition(recipe[1], recipe[2], recipe[3], recipe[4])
+        recipe = Recipe(recipe_id=recipe[0], nutrition=nutrition, recipe_url=recipe[5], recipe_name=recipe[6], ingredients=ingredients)
         return recipe
     return None
 

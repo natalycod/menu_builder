@@ -126,7 +126,6 @@ paths:
                             schema:
                                 $ref: '#/components/responses/CalendarGetGroceryListResponse'
 
-
 components:
     requests:
         BuildMenuRequest:
@@ -182,7 +181,7 @@ components:
         BuildMenuResponse:
             type: object
             properties:
-                menu_id:
+                id:
                     type: string
                 nutrition:
                     $ref: '#/components/schemas/Nutrition'
@@ -196,16 +195,16 @@ components:
         GetMenuResponse:
             type: object
             properties:
-                menu_id:
+                id:
                     type: string
                 nutrition:
                     $ref: '#/components/schemas/Nutrition'
                 breakfast_info:
-                    $ref: '#/components/schemas/Meal'
+                    $ref: '#/components/schemas/MealShort'
                 lunch_info:
-                    $ref: '#/components/schemas/Meal'
+                    $ref: '#/components/schemas/MealShort'
                 dinner_info:
-                    $ref: '#/components/schemas/Meal'
+                    $ref: '#/components/schemas/MealShort'
         
         CalendarGetMenuesResponse:
             type: array
@@ -216,7 +215,7 @@ components:
                         description: DD.MM.YYYY
                         type: string
                     menu:
-                        $ref: '#/components/schemas/Menu'
+                        $ref: '#/components/schemas/MenuShort'
 
         CalendarGetGroceryListResponse:
             type: array
@@ -239,11 +238,11 @@ components:
         Ingredient:
             type: object
             properties:
-                food_id:
+                id:
                     type: string
-                food_name:
+                name:
                     type: string
-                food_url:
+                url:
                     type: string
                 unit:
                     type: string
@@ -255,14 +254,14 @@ components:
                 nutrition:
                     $ref: '#/components/schemas/Nutrition'
         
-        Meal:
+        MealFull:
             type: object
             properties:
                 recipe_id:
                     type: string
-                recipe_name:
+                name:
                     type: string
-                recipe_url:
+                url:
                     type: string
                 nutrition:
                     $ref: '#/components/schemas/Nutrition'
@@ -271,16 +270,42 @@ components:
                     items:
                         $ref: '#/components/schemas/Ingredient'
 
-        Menu:
+        MealShort:
             type: object
             properties:
-                menu_id:
+                recipe_id:
+                    type: string
+                name:
+                    type: string
+                url:
+                    type: string
+                nutrition:
+                    $ref: '#/components/schemas/Nutrition'
+
+        MenuFull:
+            type: object
+            properties:
+                id:
                     type: string
                 nutrition:
                     $ref: '#/components/schemas/Nutrition'
                 breakfast_info:
-                    $ref: '#/components/schemas/Meal'
+                    $ref: '#/components/schemas/MealFull'
                 lunch_info:
-                    $ref: '#/components/schemas/Meal'
+                    $ref: '#/components/schemas/MealFull'
                 dinner_info:
-                    $ref: '#/components/schemas/Meal'
+                    $ref: '#/components/schemas/MealFull'
+
+        MenuShort:
+            type: object
+            properties:
+                id:
+                    type: string
+                nutrition:
+                    $ref: '#/components/schemas/Nutrition'
+                breakfast_info:
+                    $ref: '#/components/schemas/MealShort'
+                lunch_info:
+                    $ref: '#/components/schemas/MealShort'
+                dinner_info:
+                    $ref: '#/components/schemas/MealShort'

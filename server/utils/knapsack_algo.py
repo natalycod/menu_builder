@@ -8,7 +8,7 @@ def filter_knapsack(st, calories, carbs_seg, fats_seg, prots_seg):
     
     new_s = set()
     for menu in st:
-        if menu.carbohydrates > carbs_r or menu.fats > fats_r or menu.proteins > prots_r:
+        if menu.nutrition.carbohydrates > carbs_r or menu.nutrition.fats > fats_r or menu.nutrition.proteins > prots_r:
             continue
         new_s.add(menu)
     return new_s
@@ -20,9 +20,9 @@ def final_filter_knapsack(st, calories, carbs_seg, fats_seg, prots_seg):
     
     new_s = set()
     for menu in st:
-        if menu.carbohydrates > carbs_r or menu.fats > fats_r or menu.proteins > prots_r:
+        if menu.nutrition.carbohydrates > carbs_r or menu.nutrition.fats > fats_r or menu.nutrition.proteins > prots_r:
             continue
-        if menu.carbohydrates < carbs_l or menu.fats < fats_l or menu.proteins < prots_l:
+        if menu.nutrition.carbohydrates < carbs_l or menu.nutrition.fats < fats_l or menu.nutrition.proteins < prots_l:
             continue
         new_s.add(menu)
     return new_s

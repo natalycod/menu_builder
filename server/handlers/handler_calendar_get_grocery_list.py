@@ -1,7 +1,8 @@
-import db_utils
 import json
 
-from data_classes import serialize_recipe, serialize_menu_to_json
+import db_utils
+import utils.yaml_schema_parser as yaml_schema_parser
+
 
 def main(args):
     ingrs = {}
@@ -13,7 +14,7 @@ def main(args):
 
         for recipe in menu.recipes:
             recipe_full = db_utils.get_recipe_by_id(recipe.recipe_id)
-            mult = recipe.calories / float(recipe_full.calories)
+            mult = recipe.nutrition.calories / float(recipe_full.nutrition.calories)
             for ingr in recipe_full.ingredients:
                 if ingr.id in ingrs:
                     ingrs[ingr.id] = ingrs[ingr.id] + ingr
@@ -31,4 +32,4 @@ def main(args):
             "unit_amount": ingredient.unit_amount,
         })
 
-    return result
+    return yaml_schema_parser.parse_json_to_handler_response(result, '/calendar/get_grocery_list', 'get')

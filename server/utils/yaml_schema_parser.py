@@ -1,6 +1,6 @@
 import yaml
 
-SERVER_API_FILENAME = '../server_api.yaml'
+SERVER_API_FILENAME = 'server_api.yaml'
 
 def read_yaml(filename):
     f = open(filename)
