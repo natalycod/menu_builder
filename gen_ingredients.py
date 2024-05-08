@@ -4,7 +4,7 @@ import sqlite3
 
 from sqlite3 import Error
 
-INGREDIENTS_PATH = "src/databases/ingredients.sqlite"
+INGREDIENTS_PATH = "server/databases/ingredients.sqlite"
 
 def create_connection(path):
     connection = None

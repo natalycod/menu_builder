@@ -1,0 +1,44 @@
+SimpleString:
+    type: string
+
+SimpleInt:
+    type: int
+
+SimpleFloat:
+    type: float
+
+IntArray:
+    type: array
+    items:
+        type: int 
+
+SimpleObject:
+    type: object
+    properties:
+        some_str:
+            type: string
+        some_int:
+            type: int
+        some_float:
+            type: float
+
+RecursiveObject:
+    type: object
+    properties:
+        some_obj:
+            type: object
+            properties:
+                one_more_obj:
+                    type: object
+                    properties:
+                        prop_one:
+                            type: int
+                        prop_two:
+                            type: int
+        str_arr:
+            type: array
+            items:
+                type: object
+                properties:
+                    just_int:
+                        type: int
