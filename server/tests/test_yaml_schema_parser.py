@@ -16,7 +16,7 @@ yaml_schemas = yaml_schema_parser.read_yaml('static/yaml_parser_schemas.yaml')
     ]
 )
 def test_string_value(value, expected_result):
-    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_schemas['SimpleString'])
+    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_schemas, yaml_schemas['SimpleString'])
     assert result == expected_result
 
 
@@ -29,7 +29,7 @@ def test_string_value(value, expected_result):
     ]
 )
 def test_int_value(value, expected_result):
-    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_schemas['SimpleInt'])
+    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_schemas, yaml_schemas['SimpleInt'])
     assert result == expected_result
 
 
@@ -43,7 +43,7 @@ def test_int_value(value, expected_result):
     ]
 )
 def test_float_value(value, expected_result):
-    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_schemas['SimpleFloat'])
+    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_schemas, yaml_schemas['SimpleFloat'])
     assert result == expected_result
 
 @pytest.mark.parametrize(
@@ -55,7 +55,7 @@ def test_float_value(value, expected_result):
     ]
 )
 def test_int_array(value, expected_result):
-    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_schemas['IntArray'])
+    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_schemas, yaml_schemas['IntArray'])
     assert result == expected_result
 
 @pytest.mark.parametrize(
@@ -68,7 +68,7 @@ def test_int_array(value, expected_result):
     ]
 )
 def test_simple_object(value, expected_result):
-    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_schemas['SimpleObject'])
+    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_schemas, yaml_schemas['SimpleObject'])
     assert result == expected_result
 
 @pytest.mark.parametrize(
@@ -98,6 +98,39 @@ def test_simple_object(value, expected_result):
     ]
 )
 def test_recursive_object(value, expected_result):
-    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_schemas['RecursiveObject'])
+    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_schemas, yaml_schemas['RecursiveObject'])
     assert result == expected_result
 
+@pytest.mark.parametrize(
+    ('value','expected_result'),
+    [
+        pytest.param(123, 123),
+        pytest.param('123', 123),
+        pytest.param(123.45, 123),
+    ]
+)
+def test_ref_int(value, expected_result):
+    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_schemas, yaml_schemas['RefInt'])
+    assert result == expected_result
+
+@pytest.mark.parametrize(
+    ('value','expected_result'),
+    [
+        pytest.param({}, {}),
+        pytest.param({'one_prop': 1, 'two_prop': '2.3'}, {'one_prop': '1', 'two_prop': 2.3}),
+    ]
+)
+def test_ref_component(value, expected_result):
+    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_schemas, yaml_schemas['RefComponent'])
+    assert result == expected_result
+
+@pytest.mark.parametrize(
+    ('value','expected_result'),
+    [
+        pytest.param({}, {}),
+        pytest.param({'one_prop': {'one_prop': 'abc', 'two_prop': '123'}, 'two_prop': '123'}, {'one_prop': {'one_prop': 'abc', 'two_prop': 123}, 'two_prop': 123}),
+    ]
+)
+def test_ref_recursive(value, expected_result):
+    result = yaml_schema_parser.parse_json_to_yaml_schema(value, yaml_schemas, yaml_schemas['RefRecursive'])
+    assert result == expected_result

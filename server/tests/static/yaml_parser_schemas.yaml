@@ -42,3 +42,30 @@ RecursiveObject:
                 properties:
                     just_int:
                         type: int
+
+RefInt:
+    $ref: '#/SimpleInt'
+
+RefComponent:
+    $ref: '#/components/schemas/TestObject'
+
+RefRecursive:
+    $ref: '#/components/schemas/RefObject'
+
+components:
+    schemas:
+        TestObject:
+            type: object
+            properties:
+                one_prop:
+                    type: string
+                two_prop:
+                    type: float
+
+        RefObject:
+            type: object
+            properties:
+                one_prop:
+                    $ref: '#/components/schemas/TestObject'
+                two_prop:
+                    $ref: '#/RefInt'
