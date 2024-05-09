@@ -82,7 +82,7 @@ def get_menu(menu_id: str, menues_path : str = MENUES_PATH) -> Menu:
 def get_random_recipes(type: str, amount: int, recipes_path : str = RECIPES_PATH):
     connection = create_connection(recipes_path)
     cursor = connection.cursor()
-    cursor.execute(f'SELECT recipe_id, calories, carbohydrates, fats, proteins, url, name, ingredients FROM Recipes WHERE recipe_type="{type}"')
+    cursor.execute(f'SELECT recipe_id, calories, carbohydrates, fats, proteins, url, image_url, name, ingredients FROM Recipes WHERE recipe_type="{type}"')
 
     result = []
     recipes = cursor.fetchall()
@@ -91,27 +91,27 @@ def get_random_recipes(type: str, amount: int, recipes_path : str = RECIPES_PATH
 
     for recipe in recipes:
         ingredients = []
-        for ingr in json.loads(recipe[7]):
+        for ingr in json.loads(recipe[8]):
             ingredients.append(Ingredient(id=ingr['id'], unit=ingr['unit'], unit_amount=ingr['unit_amount']))
         nutrition = Nutrition(recipe[1], recipe[2], recipe[3], recipe[4])
-        recipe = Recipe(recipe_id=recipe[0], nutrition=nutrition, recipe_url=recipe[5], recipe_name=recipe[6], ingredients=ingredients)
+        recipe = Recipe(recipe_id=recipe[0], nutrition=nutrition, recipe_url=recipe[5], image_url=recipe[6], recipe_name=recipe[7], ingredients=ingredients)
         result.append(recipe)
     return result
 
 def get_recipe_by_id(recipe_id : str, recipes_path : str = RECIPES_PATH):
     connection = create_connection(recipes_path)
     cursor = connection.cursor()
-    cursor.execute(f'SELECT recipe_id, calories, carbohydrates, fats, proteins, url, name, ingredients FROM Recipes WHERE recipe_id="{recipe_id}"')
+    cursor.execute(f'SELECT recipe_id, calories, carbohydrates, fats, proteins, url, image_url, name, ingredients FROM Recipes WHERE recipe_id="{recipe_id}"')
 
     recipes = cursor.fetchall()
 
     for recipe in recipes:
         ingredients = []
-        for ingr in json.loads(recipe[7]):
+        for ingr in json.loads(recipe[8]):
             ingredient = get_ingredient_by_id(ingr['id'], ingr['unit']) * ingr['unit_amount']
             ingredients.append(ingredient)
         nutrition = Nutrition(recipe[1], recipe[2], recipe[3], recipe[4])
-        recipe = Recipe(recipe_id=recipe[0], nutrition=nutrition, recipe_url=recipe[5], recipe_name=recipe[6], ingredients=ingredients)
+        recipe = Recipe(recipe_id=recipe[0], nutrition=nutrition, recipe_url=recipe[5], image_url=recipe[6], recipe_name=recipe[7], ingredients=ingredients)
         return recipe
     return None
 

@@ -234,7 +234,7 @@ components:
                     type: float
                 proteins:
                     type: float
-        
+
         Ingredient:
             type: object
             properties:
@@ -262,6 +262,8 @@ components:
                 name:
                     type: string
                 url:
+                    type: string
+                image_url:
                     type: string
                 nutrition:
                     $ref: '#/components/schemas/Nutrition'
