@@ -71,6 +71,8 @@ def parse_json_to_yaml_schema(js, full_schema, obj_schema):
         schema = get_object_schema_by_path(full_schema, obj_schema['$ref'])
         return parse_json_to_yaml_schema(js, full_schema, schema)
 
+    return None
+
 def parse_json_to_handler_response(js, handler_name, query_method, response_code="200", api_filename = None):
     if api_filename is None:
         api_filename = SERVER_API_FILENAME

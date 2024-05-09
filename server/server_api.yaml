@@ -186,11 +186,11 @@ components:
                 nutrition:
                     $ref: '#/components/schemas/Nutrition'
                 breakfast_info:
-                    $ref: '#/components/schemas/Meal'
+                    $ref: '#/components/schemas/MealShort'
                 lunch_info:
-                    $ref: '#/components/schemas/Meal'
+                    $ref: '#/components/schemas/MealShort'
                 dinner_info:
-                    $ref: '#/components/schemas/Meal'
+                    $ref: '#/components/schemas/MealShort'
 
         GetMenuResponse:
             type: object
@@ -200,11 +200,11 @@ components:
                 nutrition:
                     $ref: '#/components/schemas/Nutrition'
                 breakfast_info:
-                    $ref: '#/components/schemas/MealShort'
+                    $ref: '#/components/schemas/MealFull'
                 lunch_info:
-                    $ref: '#/components/schemas/MealShort'
+                    $ref: '#/components/schemas/MealFull'
                 dinner_info:
-                    $ref: '#/components/schemas/MealShort'
+                    $ref: '#/components/schemas/MealFull'
         
         CalendarGetMenuesResponse:
             type: array
