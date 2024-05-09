@@ -23,7 +23,17 @@
           </td>
         </tr>
       </table>
-      <p class="card-text"> Здесь может быть какая-нибудь информация. </p>
+      <p></p>
+      <div class="card">
+        <p class="card-text">
+          <ol>
+            {% for instruction in menu.breakfast_info.instructions %}
+              <li> {{instruction}} </li>
+            {% endfor %}
+          </ol>
+        </p>
+      </div>
+      <p></p>
       <a href="{{ menu.breakfast_info.url }}" class="btn btn-secondary">fatsecret</a>
     </div>
   </div>
@@ -47,7 +57,17 @@
           </td>
         </tr>
       </table>
-      <p class="card-text">Здесь может быть какая-нибудь информация.</p>
+      <p></p>
+      <div class="card">
+        <p class="card-text">
+          <ol>
+            {% for instruction in menu.lunch_info.instructions %}
+              <li> {{instruction}} </li>
+            {% endfor %}
+          </ol>
+        </p>
+      </div>
+      <p></p>
       <a href="{{ menu.lunch_info.url }}" class="btn btn-secondary">fatsecret</a>
     </div>
   </div>
@@ -71,7 +91,17 @@
           </td>
         </tr>
       </table>
-      <p class="card-text">Здесь может быть какая-нибудь информация.</p>
+      <p></p>
+      <div class="card">
+        <p class="card-text">
+          <ol>
+            {% for instruction in menu.dinner_info.instructions %}
+              <li> {{instruction}} </li>
+            {% endfor %}
+          </ol>
+        </p>
+      </div>
+      <p></p>
       <a href="{{ menu.dinner_info.url }}" class="btn btn-secondary">fatsecret</a>
     </div>
   </div>

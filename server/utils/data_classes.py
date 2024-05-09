@@ -66,7 +66,7 @@ class Ingredient:
 
 
 class Recipe:
-    def __init__(self, recipe_id : str = None, nutrition : Nutrition = None, recipe_url : str = None, image_url : str = None, recipe_name : str = None, ingredients : list = [], js = None):
+    def __init__(self, recipe_id : str = None, nutrition : Nutrition = None, recipe_url : str = None, image_url : str = None, recipe_name : str = None, ingredients : list = [], instructions : list = [], js = None):
         if js is None:
             self.recipe_id = recipe_id
             self.recipe_name = recipe_name
@@ -74,6 +74,7 @@ class Recipe:
             self.image_url = image_url
             self.nutrition = nutrition
             self.ingredients = ingredients
+            self.instructions = instructions
         else:
             self.recipe_id = js['recipe_id']
             self.recipe_name = js['name']
@@ -84,12 +85,13 @@ class Recipe:
             for ingr in ingredients:
                 ingredients_res.append(Ingredient(js=ingr))
             self.ingredients = ingredients_res
+            self.instructions = js['instructions']
 
     def __mul__(self, x : float):
         ingredients_new = []
         for ingr in self.ingredients:
             ingredients_new.append(ingr * x)
-        return Recipe(recipe_id=self.recipe_id, nutrition=self.nutrition * x, recipe_url=self.recipe_url, image_url=self.image_url, recipe_name=self.recipe_name, ingredients=ingredients_new)
+        return Recipe(recipe_id=self.recipe_id, nutrition=self.nutrition * x, recipe_url=self.recipe_url, image_url=self.image_url, recipe_name=self.recipe_name, ingredients=ingredients_new, instructions=self.instructions)
 
     def to_json(self):
         ingredients_json = []
@@ -102,6 +104,7 @@ class Recipe:
             'image_url': self.image_url,
             'nutrition': self.nutrition.to_json(),
             'ingredients': ingredients_json,
+            'instructions': self.instructions,
         }
 
 class Menu:

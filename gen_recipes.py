@@ -30,16 +30,23 @@ def save_recipe(js, type):
         carbohydrates REAL NOT NULL,
         fats REAL NOT NULL,
         proteins REAL NOT NULL,
-        ingredients TEXT NOT NULL
+        ingredients TEXT NOT NULL,
+        instructions TEXT
     );''')
     connection.commit()
 
     ingredients = []
-    try:
-        js['ingredients']['ingredient'][0]
+    if isinstance(js['ingredients']['ingredient'], list):
         ingredients = js['ingredients']['ingredient']
-    except:
+    else:
         ingredients = [js['ingredients']['ingredient']]
+
+    instructions = []
+    if 'directions' in js and isinstance(js['directions']['direction'], list):
+        for dir in js['directions']['direction']:
+            instructions.append(dir['direction_description'])
+    elif 'directions' in js:
+        instructions.append(js['directions']['direction']['direction_description'])
 
     for i in range(len(ingredients)):
         ingredients[i] = {
@@ -55,13 +62,13 @@ def save_recipe(js, type):
         else:
             image_url = js['recipe_images']['recipe_image'][0]
 
-    cursor.execute('INSERT INTO Recipes (recipe_id, recipe_type, name, url, image_url, calories, carbohydrates, fats, proteins, ingredients) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+    cursor.execute('INSERT INTO Recipes (recipe_id, recipe_type, name, url, image_url, calories, carbohydrates, fats, proteins, ingredients, instructions) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
                    (js['recipe_id'], type, js['recipe_name'], js['recipe_url'], image_url,
                     float(js['serving_sizes']['serving']['calories']),
                     float(js['serving_sizes']['serving']['carbohydrate']),
                     float(js['serving_sizes']['serving']['fat']),
                     float(js['serving_sizes']['serving']['protein']),
-                    json.dumps(ingredients)))
+                    json.dumps(ingredients), json.dumps(instructions)))
     connection.commit()
 
     connection.close()

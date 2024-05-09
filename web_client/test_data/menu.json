@@ -1,10 +1,173 @@
 {
     "breakfast_info": {
-        "image_url": "https://m.ftscrt.com/static/recipe/c2ada520-9a18-453d-ae31-8e69a726e93e.jpg",
+        "image_url": "https://m.ftscrt.com/static/recipe/b8d77f87-25ee-467b-899b-93bc74beae4f.jpg",
         "ingredients": [
             {
-                "id": "34888759",
-                "name": "Everything But The Bagel Seasoning",
+                "id": "39363849",
+                "name": "Almond Flour Blanched",
+                "nutrition": {
+                    "calories": 77.83882783882784,
+                    "carbohydrates": 2.7472527472527473,
+                    "fats": 6.41025641025641,
+                    "proteins": 2.7472527472527473
+                },
+                "unit": "g",
+                "unit_amount": 12.82051282051282,
+                "url": "https://www.fatsecret.com/calories-nutrition/kirkland-signature/almond-flour-blanched"
+            },
+            {
+                "id": "10578539",
+                "name": "Whey Protein",
+                "nutrition": {
+                    "calories": 82.41758241758241,
+                    "carbohydrates": 3.663003663003663,
+                    "fats": 1.3736263736263736,
+                    "proteins": 15.567765567765568
+                },
+                "unit": "g",
+                "unit_amount": 21.978021978021978,
+                "url": "https://www.fatsecret.com/calories-nutrition/bodytech/whey-protein"
+            },
+            {
+                "id": "418587",
+                "name": "100% Liquid Egg Whites",
+                "nutrition": {
+                    "calories": 22.893772893772894,
+                    "carbohydrates": 0.0,
+                    "fats": 0.0,
+                    "proteins": 4.5787545787545785
+                },
+                "unit": "g",
+                "unit_amount": 42.124542124542124,
+                "url": "https://www.fatsecret.com/calories-nutrition/great-value/100%25-liquid-egg-whites"
+            },
+            {
+                "id": "4142430",
+                "name": "Cream Cheese",
+                "nutrition": {
+                    "calories": 82.41758241758241,
+                    "carbohydrates": 1.8315018315018314,
+                    "fats": 8.241758241758241,
+                    "proteins": 1.8315018315018314
+                },
+                "unit": "g",
+                "unit_amount": 25.64102564102564,
+                "url": "https://www.fatsecret.com/calories-nutrition/great-value/cream-cheese"
+            },
+            {
+                "id": "3092",
+                "name": "Egg",
+                "nutrition": {
+                    "calories": 67.3076923076923,
+                    "carbohydrates": 0.35256410256410253,
+                    "fats": 4.551282051282051,
+                    "proteins": 5.76007326007326
+                },
+                "unit": "g",
+                "unit_amount": 45.78754578754579,
+                "url": "https://www.fatsecret.com/calories-nutrition/generic/egg-whole-raw"
+            }
+        ],
+        "instructions": [
+            "Mix egg, cream cheese, egg white, and whey protein.",
+            "Add flour and stir well.",
+            "Put in a lightly greased skillet.",
+            "Cook on both sides until golden brown."
+        ],
+        "name": "Protein Bread",
+        "nutrition": {
+            "calories": 333.3333333333333,
+            "carbohydrates": 8.58974358974359,
+            "fats": 20.576923076923077,
+            "proteins": 30.485347985347982
+        },
+        "recipe_id": "64680582",
+        "url": "https://www.fatsecret.com/recipes/64680582-protein-bread/Default.aspx"
+    },
+    "dinner_info": {
+        "image_url": "https://m.ftscrt.com/static/recipe/4ce66b69-2631-4efe-a395-bb09253e3528.jpg",
+        "ingredients": [
+            {
+                "id": "52432",
+                "name": "Olive Oil",
+                "nutrition": {
+                    "calories": 26.80067001675042,
+                    "carbohydrates": 0.0,
+                    "fats": 3.0150753768844223,
+                    "proteins": 0.0
+                },
+                "unit": "ml",
+                "unit_amount": 3.3500837520938025,
+                "url": "https://www.fatsecret.com/calories-nutrition/bertolli/olive-oil"
+            },
+            {
+                "id": "6734831",
+                "name": "Fine White Wine Vinegar",
+                "nutrition": {
+                    "calories": 0.0,
+                    "carbohydrates": 0.0,
+                    "fats": 0.0,
+                    "proteins": 0.0
+                },
+                "unit": "ml",
+                "unit_amount": 5.025125628140704,
+                "url": "https://www.fatsecret.com/calories-nutrition/regina/fine-white-wine-vinegar"
+            },
+            {
+                "id": "4718517",
+                "name": "Boneless Skinless Chicken Breast",
+                "nutrition": {
+                    "calories": 221.10552763819098,
+                    "carbohydrates": 0.0,
+                    "fats": 5.025125628140704,
+                    "proteins": 46.231155778894475
+                },
+                "unit": "g",
+                "unit_amount": 199.44723618090455,
+                "url": "https://www.fatsecret.com/calories-nutrition/wal-mart/boneless-skinless-chicken-breast"
+            },
+            {
+                "id": "33891",
+                "name": "Parsley (Dried)",
+                "nutrition": {
+                    "calories": 0.13869346733668342,
+                    "carbohydrates": 0.025959798994974873,
+                    "fats": 0.002226130653266332,
+                    "proteins": 0.011266331658291459
+                },
+                "unit": "g",
+                "unit_amount": 0.05025125628140704,
+                "url": "https://www.fatsecret.com/calories-nutrition/usda/parsley-(dried)"
+            },
+            {
+                "id": "33892",
+                "name": "Black Pepper",
+                "nutrition": {
+                    "calories": 0.44849246231155776,
+                    "carbohydrates": 0.11398743718592966,
+                    "fats": 0.0057336683417085425,
+                    "proteins": 0.019258793969849246
+                },
+                "unit": "g",
+                "unit_amount": 0.17587939698492464,
+                "url": "https://www.fatsecret.com/calories-nutrition/usda/black-pepper"
+            },
+            {
+                "id": "519595",
+                "name": "Cherry Tomatoes",
+                "nutrition": {
+                    "calories": 17.969849246231156,
+                    "carbohydrates": 3.9134338358458964,
+                    "fats": 0.19966499162479062,
+                    "proteins": 0.8785259631490789
+                },
+                "unit": "g",
+                "unit_amount": 99.83249581239532,
+                "url": "https://www.fatsecret.com/calories-nutrition/generic/tomatoes-cherry"
+            },
+            {
+                "id": "33908",
+                "name": "Salt",
                 "nutrition": {
                     "calories": 0.0,
                     "carbohydrates": 0.0,
@@ -12,196 +175,141 @@
                     "proteins": 0.0
                 },
                 "unit": "g",
-                "unit_amount": 0.41536863966770504,
-                "url": "https://www.fatsecret.com/calories-nutrition/signature-select/everything-but-the-bagel-seasoning"
+                "unit_amount": 1.0050251256281408,
+                "url": "https://www.fatsecret.com/calories-nutrition/usda/salt"
             },
             {
-                "id": "44135542",
-                "name": "Protein Baked Goods Mix",
+                "id": "37922",
+                "name": "Water",
                 "nutrition": {
-                    "calories": 207.68431983385256,
-                    "carbohydrates": 12.461059190031152,
-                    "fats": 5.192107995846313,
-                    "proteins": 31.15264797507788
-                },
-                "unit": "g",
-                "unit_amount": 62.30529595015576,
-                "url": "https://www.fatsecret.com/calories-nutrition/herbalife/protein-baked-goods-mix"
-            },
-            {
-                "id": "1512671",
-                "name": "All Whites 100% Liquid Egg Whites",
-                "nutrition": {
-                    "calories": 124.61059190031152,
-                    "carbohydrates": 4.153686396677051,
-                    "fats": 0.0,
-                    "proteins": 24.922118380062305
-                },
-                "unit": "g",
-                "unit_amount": 232.60643821391486,
-                "url": "https://www.fatsecret.com/calories-nutrition/papetti-foods/all-whites-100%25-liquid-egg-whites"
-            }
-        ],
-        "name": "Protein Bagels",
-        "nutrition": {
-            "calories": 333.3333333333333,
-            "carbohydrates": 16.60436137071651,
-            "fats": 5.202492211838006,
-            "proteins": 56.074766355140184
-        },
-        "recipe_id": "46680541",
-        "url": "https://www.fatsecret.com/recipes/46680541-protein-bagels/Default.aspx"
-    },
-    "dinner_info": {
-        "image_url": "https://m.ftscrt.com/static/recipe/c7c592b1-333d-4be1-a04a-e63f8ef01f8b.jpg",
-        "ingredients": [
-            {
-                "id": "33882",
-                "name": "Garlic Powder",
-                "nutrition": {
-                    "calories": 10.936470588235295,
-                    "carbohydrates": 2.395152941176471,
-                    "fats": 0.025035294117647065,
-                    "proteins": 0.5534117647058825
-                },
-                "unit": "g",
-                "unit_amount": 3.2941176470588243,
-                "url": "https://www.fatsecret.com/calories-nutrition/usda/garlic-powder"
-            },
-            {
-                "id": "36414",
-                "name": "Iceberg Lettuce (Includes Crisphead Types)",
-                "nutrition": {
-                    "calories": 5.2705882352941185,
-                    "carbohydrates": 1.1181176470588237,
-                    "fats": 0.05270588235294119,
-                    "proteins": 0.3388235294117648
-                },
-                "unit": "g",
-                "unit_amount": 37.64705882352942,
-                "url": "https://www.fatsecret.com/calories-nutrition/usda/iceberg-lettuce-(includes-crisphead-types)"
-            },
-            {
-                "id": "38332",
-                "name": "Soy Sauce (Shoyu)",
-                "nutrition": {
-                    "calories": 6.650980392156864,
-                    "carbohydrates": 0.9549803921568629,
-                    "fats": 0.005019607843137256,
-                    "proteins": 0.7880784313725492
-                },
-                "unit": "g",
-                "unit_amount": 12.549019607843139,
-                "url": "https://www.fatsecret.com/calories-nutrition/usda/soy-sauce-(shoyu)"
-            },
-            {
-                "id": "40391",
-                "name": "Ground Beef (95% Lean / 5% Fat)",
-                "nutrition": {
-                    "calories": 243.69882352941184,
+                    "calories": 0.0,
                     "carbohydrates": 0.0,
-                    "fats": 8.894117647058826,
-                    "proteins": 38.08461176470589
-                },
-                "unit": "g",
-                "unit_amount": 177.8823529411765,
-                "url": "https://www.fatsecret.com/calories-nutrition/usda/ground-beef-(95%25-lean---5%25-fat)"
-            }
-        ],
-        "name": "Asian Lettuce Wraps",
-        "nutrition": {
-            "calories": 266.6666666666667,
-            "carbohydrates": 4.470588235294119,
-            "fats": 8.972549019607843,
-            "proteins": 39.76470588235295
-        },
-        "recipe_id": "21783",
-        "url": "https://www.fatsecret.com/recipes/asian-lettuce-wraps/Default.aspx"
-    },
-    "id": "qaqgtUzl48cvPzQBZufV9USrJByc3T",
-    "lunch_info": {
-        "image_url": "https://m.ftscrt.com/static/recipe/e6448057-55fe-4264-9fee-69374ed5ceaf.jpg",
-        "ingredients": [
-            {
-                "id": "59252",
-                "name": "Fancy Low-moisture Part-skim Mozzarella Cheese Shredded",
-                "nutrition": {
-                    "calories": 125.0,
-                    "carbohydrates": 1.5625,
-                    "fats": 9.375,
-                    "proteins": 10.9375
-                },
-                "unit": "g",
-                "unit_amount": 43.75,
-                "url": "https://www.fatsecret.com/calories-nutrition/great-value/fancy-low-moisture-part-skim-mozzarella-cheese-shredded"
-            },
-            {
-                "id": "68267187",
-                "name": "Franks Red Hot Buffalo Sauce",
-                "nutrition": {
-                    "calories": 7.8125,
-                    "carbohydrates": 1.5625,
                     "fats": 0.0,
                     "proteins": 0.0
                 },
                 "unit": "g",
-                "unit_amount": 21.875,
-                "url": "https://www.fatsecret.com/calories-nutrition/subway/franks-red-hot-buffalo-sauce"
-            },
-            {
-                "id": "57696",
-                "name": "Premium Chunk Chicken in Water",
-                "nutrition": {
-                    "calories": 87.890625,
-                    "carbohydrates": 0.9765625,
-                    "fats": 1.953125,
-                    "proteins": 18.5546875
-                },
-                "unit": "g",
-                "unit_amount": 82.03125,
-                "url": "https://www.fatsecret.com/calories-nutrition/tyson-foods/premium-chunk-chicken-in-water"
-            },
-            {
-                "id": "76960",
-                "name": "Large Grade A Eggs",
-                "nutrition": {
-                    "calories": 93.75,
-                    "carbohydrates": 0.0,
-                    "fats": 6.25,
-                    "proteins": 9.375
-                },
-                "unit": "g",
-                "unit_amount": 78.125,
-                "url": "https://www.fatsecret.com/calories-nutrition/egglands-best/large-grade-a-eggs"
-            },
-            {
-                "id": "370659",
-                "name": "Extra Sharp Cheddar Cheese",
-                "nutrition": {
-                    "calories": 85.9375,
-                    "carbohydrates": 0.78125,
-                    "fats": 7.03125,
-                    "proteins": 5.46875
-                },
-                "unit": "g",
-                "unit_amount": 21.875,
-                "url": "https://www.fatsecret.com/calories-nutrition/great-value/extra-sharp-cheddar-cheese"
+                "unit_amount": 9.527638190954773,
+                "url": "https://www.fatsecret.com/calories-nutrition/usda/water"
             }
         ],
-        "name": "Buffalo Chicken Chaffle",
+        "instructions": [
+            "Sprinkle chicken with 1/4 teaspoon salt and 1/8 teaspoon of pepper.",
+            "In a large nonstick skillet heat olive oil over medium-high heat. Add chicken; cook for 10-12 minutes or until chicken is no longer pink turning once. Transfer chicken to a serving platter; cover and keep warm.",
+            "Drain fat from skillet. Add tomato, water, parsley, vinegar, remaining salt and pepper to skillet.",
+            "Bring to boiling; reduce heat. Simmer uncovered for 3-4 minutes or until tomatoes begin to soften, stirring occasionally.",
+            "Serve tomato mixture over chicken."
+        ],
+        "name": "Chicken with Cherry Tomatoes",
+        "nutrition": {
+            "calories": 266.6666666666667,
+            "carbohydrates": 4.046901172529314,
+            "fats": 8.25460636515913,
+            "proteins": 47.14237855946399
+        },
+        "recipe_id": "10659253",
+        "url": "https://www.fatsecret.com/recipes/chicken-with-cherry-tomatoes/Default.aspx"
+    },
+    "id": "Te9gznkybD7aTmzqnTIqBHq00oZ2FF",
+    "lunch_info": {
+        "image_url": "https://m.ftscrt.com/static/recipe/8c29090d-f40a-4ed0-ae0b-ef724b18e46a.jpg",
+        "ingredients": [
+            {
+                "id": "64671",
+                "name": "Feta Cheese",
+                "nutrition": {
+                    "calories": 33.0188679245283,
+                    "carbohydrates": 0.4716981132075472,
+                    "fats": 2.1226415094339623,
+                    "proteins": 2.358490566037736
+                },
+                "unit": "g",
+                "unit_amount": 13.20754716981132,
+                "url": "https://www.fatsecret.com/calories-nutrition/trader-joes/feta-cheese"
+            },
+            {
+                "id": "260624",
+                "name": "Quick Oats",
+                "nutrition": {
+                    "calories": 70.75471698113208,
+                    "carbohydrates": 13.20754716981132,
+                    "fats": 1.179245283018868,
+                    "proteins": 2.358490566037736
+                },
+                "unit": "g",
+                "unit_amount": 18.867924528301888,
+                "url": "https://www.fatsecret.com/calories-nutrition/wegmans/quick-oats"
+            },
+            {
+                "id": "255396",
+                "name": "Black Bean Dip",
+                "nutrition": {
+                    "calories": 18.867924528301888,
+                    "carbohydrates": 4.716981132075472,
+                    "fats": 0.0,
+                    "proteins": 1.8867924528301887
+                },
+                "unit": "g",
+                "unit_amount": 30.18867924528302,
+                "url": "https://www.fatsecret.com/calories-nutrition/wegmans/black-bean-dip"
+            },
+            {
+                "id": "503741",
+                "name": "Lean Ground Turkey",
+                "nutrition": {
+                    "calories": 226.41509433962264,
+                    "carbohydrates": 1.8867924528301887,
+                    "fats": 1.8867924528301887,
+                    "proteins": 49.056603773584904
+                },
+                "unit": "g",
+                "unit_amount": 211.32075471698113,
+                "url": "https://www.fatsecret.com/calories-nutrition/wegmans/lean-ground-turkey"
+            },
+            {
+                "id": "3092",
+                "name": "Egg",
+                "nutrition": {
+                    "calories": 52.00471698113208,
+                    "carbohydrates": 0.2724056603773585,
+                    "fats": 3.516509433962264,
+                    "proteins": 4.4504716981132075
+                },
+                "unit": "g",
+                "unit_amount": 35.37735849056604,
+                "url": "https://www.fatsecret.com/calories-nutrition/generic/egg-whole-raw"
+            },
+            {
+                "id": "33871",
+                "name": "Chili Powder",
+                "nutrition": {
+                    "calories": 5.554245283018868,
+                    "carbohydrates": 0.9668632075471698,
+                    "fats": 0.29646226415094346,
+                    "proteins": 0.2168632075471698
+                },
+                "unit": "g",
+                "unit_amount": 1.7688679245283019,
+                "url": "https://www.fatsecret.com/calories-nutrition/usda/chili-powder"
+            }
+        ],
+        "instructions": [
+            "Mix all ingredients together.",
+            "Bake in a  greased muffin pan for 20-25 minutes at 350 °F (175 °C)."
+        ],
+        "name": "Mexican Turkey Muffins",
         "nutrition": {
             "calories": 400.0,
-            "carbohydrates": 4.875,
-            "fats": 24.609375,
-            "proteins": 44.34375
+            "carbohydrates": 20.566037735849058,
+            "fats": 9.245283018867925,
+            "proteins": 60.339622641509436
         },
-        "recipe_id": "78448589",
-        "url": "https://www.fatsecret.com/recipes/78448589-buffalo-chicken-chaffle/Default.aspx"
+        "recipe_id": "10549195",
+        "url": "https://www.fatsecret.com/recipes/mexican-turkey-muffins/Default.aspx"
     },
     "nutrition": {
         "calories": 1000.0,
-        "carbohydrates": 25.94994960601063,
-        "fats": 38.784416231445846,
-        "proteins": 140.18322223749314
+        "carbohydrates": 33.20268249812196,
+        "fats": 38.07681246095014,
+        "proteins": 137.96734918632143
     }
 }
