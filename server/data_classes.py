@@ -49,7 +49,7 @@ class Ingredient:
             self.unit_amount = js['unit_amount']
 
     def __mul__(self, x : float):
-        return Ingredient(self.id, self.name, self.url, self.nutrition * x, self.unit, self.unit_amount * x)
+        return Ingredient(self.id, self.name, self.url, self.nutrition * x if self.nutrition is not None else None, self.unit, self.unit_amount * x)
 
     def __add__(self, other):
         return Ingredient(self.id, self.name, self.url, self.nutrition + other.nutrition, self.unit, self.unit_amount + other.unit_amount)
@@ -59,7 +59,7 @@ class Ingredient:
             "id": self.id,
             "name": self.name,
             "url": self.url,
-            "nutrition": self.nutrition.to_json(),
+            "nutrition": self.nutrition.to_json() if self.nutrition is not None else None,
             "unit": self.unit,
             "unit_amount": self.unit_amount,
         }

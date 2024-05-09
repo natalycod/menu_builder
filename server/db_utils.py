@@ -9,7 +9,6 @@ from data_classes import Recipe, Menu, Ingredient, Nutrition
 INGREDIENTS_PATH = "databases/ingredients.sqlite"
 RECIPES_PATH = "databases/recipes.sqlite"
 MENUES_PATH = "databases/menues.sqlite"
-
 CALENDAR_PATH = "databases/calendar.sqlite"
 
 
@@ -42,13 +41,19 @@ def save_menu(menu : Menu):
         proteins REAL NOT NULL,
         breakfast_info TEXT NOT NULL,
         lunch_info TEXT NOT NULL,
-        dinner_info TEXT NOT NULL,
-        ingredients TEXT NOT NULL
+        dinner_info TEXT NOT NULL
     );''')
     connection.commit()
 
-    cursor.execute('INSERT INTO Menues (id, calories, carbohydrates, fats, proteins, breakfast_info, lunch_info, dinner_info, ingredients) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                   (menu.id, menu.nutrition.calories, menu.nutrition.carbohydrates, menu.nutrition.fats, menu.nutrition.proteins, json.dumps(menu.recipes[0].to_json()), json.dumps(menu.recipes[1].to_json()), json.dumps(menu.recipes[2].to_json()), json.dumps([])))
+    recipes = []
+    for recipe in menu.recipes:
+        recipes.append({
+            'recipe_id': recipe.recipe_id,
+            'calories': recipe.nutrition.calories,
+        })
+
+    cursor.execute('INSERT INTO Menues (id, calories, carbohydrates, fats, proteins, breakfast_info, lunch_info, dinner_info) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+                   (menu.id, menu.nutrition.calories, menu.nutrition.carbohydrates, menu.nutrition.fats, menu.nutrition.proteins, json.dumps(recipes[0]), json.dumps(recipes[1]), json.dumps(recipes[2])))
     connection.commit()
 
     connection.close()
@@ -61,11 +66,16 @@ def get_menu(menu_id: str) -> Menu:
     for menu in menues:
         result = Menu()
         result.id = menu_id
-        result.calories = menu[1]
-        result.carbohydrates = menu[2]
-        result.fats = menu[3]
-        result.proteins = menu[4]
-        result.recipes = [Recipe(js=json.loads(menu[5])), Recipe(js=json.loads(menu[6])), Recipe(js=json.loads(menu[7]))]
+        result.nutrition = Nutrition(menu[1], menu[2], menu[3], menu[4])
+
+        breakfast_recipe = get_recipe_by_id(json.loads(menu[5])['recipe_id'])
+        breakfast_recipe = breakfast_recipe * (json.loads(menu[5])['calories'] / breakfast_recipe.nutrition.calories)
+        lunch_recipe = get_recipe_by_id(json.loads(menu[6])['recipe_id'])
+        lunch_recipe = lunch_recipe * (json.loads(menu[6])['calories'] / lunch_recipe.nutrition.calories)
+        dinner_recipe = get_recipe_by_id(json.loads(menu[7])['recipe_id'])
+        dinner_recipe = dinner_recipe * (json.loads(menu[7])['calories'] / dinner_recipe.nutrition.calories)
+        
+        result.recipes = [breakfast_recipe, lunch_recipe, dinner_recipe]
         return result
     connection.close()
 
@@ -82,8 +92,7 @@ def get_random_recipes(type: str, amount: int):
     for recipe in recipes:
         ingredients = []
         for ingr in json.loads(recipe[7]):
-            nutrition = Nutrition(ingr['calories'], ingr['carbohydrates'], ingr['fats'], ingr['proteins'])
-            ingredients.append(Ingredient(ingr['food_id'], ingr['food_name'], ingr['ingredient_url'], nutrition, ingr['measurement_unit'], ingr['number_of_units']))
+            ingredients.append(Ingredient(id=ingr['id'], unit=ingr['unit'], unit_amount=ingr['unit_amount']))
         nutrition = Nutrition(recipe[1], recipe[2], recipe[3], recipe[4])
         recipe = Recipe(recipe_id=recipe[0], nutrition=nutrition, recipe_url=recipe[5], recipe_name=recipe[6], ingredients=ingredients)
         result.append(recipe)
@@ -99,11 +108,38 @@ def get_recipe_by_id(recipe_id : str):
     for recipe in recipes:
         ingredients = []
         for ingr in json.loads(recipe[7]):
-            nutrition = Nutrition(ingr['calories'], ingr['carbohydrates'], ingr['fats'], ingr['proteins'])
-            ingredients.append(Ingredient(ingr['food_id'], ingr['food_name'], ingr['ingredient_url'], nutrition, ingr['measurement_unit'], ingr['number_of_units']))
+            ingredient = get_ingredient_by_id(ingr['id'], ingr['unit']) * ingr['unit_amount']
+            ingredients.append(ingredient)
         nutrition = Nutrition(recipe[1], recipe[2], recipe[3], recipe[4])
         recipe = Recipe(recipe_id=recipe[0], nutrition=nutrition, recipe_url=recipe[5], recipe_name=recipe[6], ingredients=ingredients)
         return recipe
+    return None
+
+def get_ingredient_by_id(ingredient_id : str, unit : str = None):
+    connection = create_connection(INGREDIENTS_PATH)
+    cursor = connection.cursor()
+    cursor.execute(f'SELECT * FROM Ingredients WHERE id="{ingredient_id}"')
+
+    ingredients = cursor.fetchall()
+
+    if unit == 'g':
+        for ingr in ingredients:
+            nutrition = Nutrition(ingr[3], ingr[4], ingr[5], ingr[6])
+            return Ingredient(ingr[0], ingr[1], ingr[2], nutrition, 'g', 1)
+
+    if unit == 'ml':
+        for ingr in ingredients:
+            nutrition = Nutrition(ingr[7], ingr[8], ingr[9], ingr[10])
+            return Ingredient(ingr[0], ingr[1], ingr[2], nutrition, 'ml', 1)
+
+    for ingr in ingredients:
+        if ingr[3] is not None:
+            nutrition = Nutrition(ingr[3], ingr[4], ingr[5], ingr[6])
+            return Ingredient(ingr[0], ingr[1], ingr[2], nutrition, 'g', 1)
+        if ingr[7] is not None:
+            nutrition = Nutrition(ingr[7], ingr[8], ingr[9], ingr[10])
+            return Ingredient(ingr[0], ingr[1], ingr[2], nutrition, 'ml', 1)
+
     return None
 
 def save_menu_to_calendar(user_id : str, date : str, menu_id : str):

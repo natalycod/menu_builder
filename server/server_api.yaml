@@ -253,7 +253,7 @@ components:
                     type: float
                 nutrition:
                     $ref: '#/components/schemas/Nutrition'
-        
+
         MealFull:
             type: object
             properties:
@@ -285,7 +285,7 @@ components:
         MenuFull:
             type: object
             properties:
-                id:
+                recipe_id:
                     type: string
                 nutrition:
                     $ref: '#/components/schemas/Nutrition'

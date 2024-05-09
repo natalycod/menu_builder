@@ -40,20 +40,26 @@ def save_recipe(js, type):
     except:
         ingredients = [js['ingredients']['ingredient']]
 
+    for i in range(len(ingredients)):
+        ingredients[i] = {
+            'id': ingredients[i]['food_id'],
+            'unit': ingredients[i]['measurement_unit'],
+            'unit_amount': ingredients[i]['number_of_units'] / float(js['number_of_servings'])
+        }
 
     cursor.execute('INSERT INTO Recipes (recipe_id, recipe_type, name, url, calories, carbohydrates, fats, proteins, ingredients) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
                    (js['recipe_id'], type, js['recipe_name'], js['recipe_url'],
-                    float(js['serving_sizes']['serving']['calories']) * float(js['number_of_servings']),
-                    float(js['serving_sizes']['serving']['carbohydrate']) * float(js['number_of_servings']),
-                    float(js['serving_sizes']['serving']['fat']) * float(js['number_of_servings']),
-                    float(js['serving_sizes']['serving']['protein']) * float(js['number_of_servings']),
+                    float(js['serving_sizes']['serving']['calories']),
+                    float(js['serving_sizes']['serving']['carbohydrate']),
+                    float(js['serving_sizes']['serving']['fat']),
+                    float(js['serving_sizes']['serving']['protein']),
                     json.dumps(ingredients)))
     connection.commit()
 
     connection.close()
 
 for type in ["breakfast", "lunch", "dinner"]:
-    f = open("db/" + type + "_full.json")
+    f = open("db_data/" + type + "_full.json")
     js = json.load(f)
     f.close()
 
