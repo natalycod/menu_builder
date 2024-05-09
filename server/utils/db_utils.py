@@ -4,7 +4,7 @@ import sqlite3
 
 from sqlite3 import Error
 
-from data_classes import Recipe, Menu, Ingredient, Nutrition
+from utils.data_classes import Recipe, Menu, Ingredient, Nutrition
 
 INGREDIENTS_PATH = "databases/ingredients.sqlite"
 RECIPES_PATH = "databases/recipes.sqlite"

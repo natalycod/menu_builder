@@ -1,4 +1,4 @@
-import db_utils
+import utils.db_utils as db_utils
 import utils.yaml_schema_parser as yaml_schema_parser
 
 

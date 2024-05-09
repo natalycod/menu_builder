@@ -1,4 +1,4 @@
-from data_classes import Menu
+from utils.data_classes import Menu
 
 
 def filter_knapsack(st, calories, carbs_seg, fats_seg, prots_seg):
