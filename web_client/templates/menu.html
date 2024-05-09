@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ menu.menu_id }}{% endblock %}
+
+{% block content %}
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ menu.breakfast_info.name }}</h5>
+      <h6 class="card-subtitle mb-2 text-muted"> Calories: {{ menu.breakfast_info.nutrition.calories }}</h6>
+      <table width="100%" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="leftcol" width="30%"> <img src="{{ menu.breakfast_info.image_url }}"> </td>
+          <td valign="top"> Ingredients:<br/><br/>
+            <table>
+              {% for ingredient in menu.breakfast_info.ingredients %}
+                <tr>
+                  <td> {{ingredient.name}} </td>
+                  <td> &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp; </td>
+                  <td> {{ingredient.unit_amount}} {{ingredient.unit}}<br/> </td>
+                </tr>
+              {% endfor %}
+            </table>
+          </td>
+        </tr>
+      </table>
+      <p class="card-text"> Здесь может быть какая-нибудь информация. </p>
+      <a href="{{ menu.breakfast_info.url }}" class="btn btn-secondary">fatsecret</a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ menu.lunch_info.name }}</h5>
+      <h6 class="card-subtitle mb-2 text-muted"> Calories: {{ menu.lunch_info.nutrition.calories }}</h6>
+      <table width="100%" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="leftcol" width="30%"> <img src="{{ menu.lunch_info.image_url }}"> </td>
+          <td valign="top"> Ingredients:<br/><br/>
+            <table>
+              {% for ingredient in menu.lunch_info.ingredients %}
+                <tr>
+                  <td> {{ingredient.name}} </td>
+                  <td> &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp; </td>
+                  <td> {{ingredient.unit_amount}} {{ingredient.unit}}<br/> </td>
+                </tr>
+              {% endfor %}
+            </table>
+          </td>
+        </tr>
+      </table>
+      <p class="card-text">Здесь может быть какая-нибудь информация.</p>
+      <a href="{{ menu.lunch_info.url }}" class="btn btn-secondary">fatsecret</a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ menu.dinner_info.name }}</h5>
+      <h6 class="card-subtitle mb-2 text-muted"> Calories: {{ menu.dinner_info.nutrition.calories }}</h6>
+      <table width="100%" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="leftcol" width="30%"> <img src="{{ menu.dinner_info.image_url }}"> </td>
+          <td valign="top"> Ingredients:<br/><br/>
+            <table>
+              {% for ingredient in menu.dinner_info.ingredients %}
+                <tr>
+                  <td> {{ingredient.name}} </td>
+                  <td> &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp; </td>
+                  <td> {{ingredient.unit_amount}} {{ingredient.unit}}<br/> </td>
+                </tr>
+              {% endfor %}
+            </table>
+          </td>
+        </tr>
+      </table>
+      <p class="card-text">Здесь может быть какая-нибудь информация.</p>
+      <a href="{{ menu.dinner_info.url }}" class="btn btn-secondary">fatsecret</a>
+    </div>
+  </div>
+  <a href="{{ menu.breakfast_info.url }}" class="btn btn-secondary">&larr; Назад</a>
+{% endblock %}
