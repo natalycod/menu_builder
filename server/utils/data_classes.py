@@ -8,10 +8,10 @@ class Nutrition:
             self.fats = fats
             self.proteins = prots
         else:
-            self.calories = js['calories']
-            self.carbohydrates = js['carbohydrates']
-            self.fats = js['fats']
-            self.proteins = js['proteins']
+            self.calories = js['calories'] if 'calories' in js else None
+            self.carbohydrates = js['carbohydrates'] if 'carbohydrates' in js else None
+            self.fats = js['fats'] if 'fats' in js else None
+            self.proteins = js['proteins'] if 'proteins' in js else None
 
     def __mul__(self, x : float):
         return Nutrition(self.calories * x, self.carbohydrates * x, self.fats * x, self.proteins * x)
@@ -39,14 +39,14 @@ class Ingredient:
             self.unit = unit
             self.unit_amount = unit_amount
         else:
-            self.id = js['id']
-            self.name = js['name']
-            self.url = js['url']
+            self.id = js['id'] if 'id' in js else None
+            self.name = js['name'] if 'name' in js else None
+            self.url = js['url'] if 'url' in js else None
 
-            self.nutrition = Nutrition(js=js['nutrition'])
+            self.nutrition = Nutrition(js=js['nutrition']) if 'nutrition' in js else None
 
-            self.unit = js['unit']
-            self.unit_amount = js['unit_amount']
+            self.unit = js['unit'] if 'unit' in js else None
+            self.unit_amount = js['unit_amount'] if 'unit_amount' in js else None
 
     def __mul__(self, x : float):
         return Ingredient(self.id, self.name, self.url, self.nutrition * x if self.nutrition is not None else None, self.unit, self.unit_amount * x)
@@ -76,16 +76,16 @@ class Recipe:
             self.ingredients = ingredients
             self.instructions = instructions
         else:
-            self.recipe_id = js['recipe_id']
-            self.recipe_name = js['name']
-            self.recipe_url = js['url']
+            self.recipe_id = js['recipe_id'] if 'recipe_id' in js else None
+            self.recipe_name = js['name'] if 'name' in js else None
+            self.recipe_url = js['url'] if 'url' in js else None
             self.image_url = js['image_url'] if 'image_url' in js else None
-            self.nutrition = Nutrition(js=js['nutrition'])
+            self.nutrition = Nutrition(js=js['nutrition']) if 'nutrition' in js else None
             ingredients_res = []
             for ingr in ingredients:
                 ingredients_res.append(Ingredient(js=ingr))
             self.ingredients = ingredients_res
-            self.instructions = js['instructions']
+            self.instructions = js['instructions'] if 'instructions' in js else None
 
     def __mul__(self, x : float):
         ingredients_new = []
