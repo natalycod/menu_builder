@@ -29,8 +29,8 @@ def generate_id() -> str:
         result += symbols[rnd]
     return result
 
-def save_menu(menu : Menu):
-    connection = create_connection(MENUES_PATH)
+def save_menu(menu : Menu, menues_path : str = MENUES_PATH):
+    connection = create_connection(menues_path)
     cursor = connection.cursor()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS Menues (
@@ -58,8 +58,8 @@ def save_menu(menu : Menu):
 
     connection.close()
 
-def get_menu(menu_id: str) -> Menu:
-    connection = create_connection(MENUES_PATH)
+def get_menu(menu_id: str, menues_path : str = MENUES_PATH) -> Menu:
+    connection = create_connection(menues_path)
     cursor = connection.cursor()
     cursor.execute(f'SELECT * FROM Menues WHERE id="{menu_id}"')
     menues = cursor.fetchall()
@@ -79,8 +79,8 @@ def get_menu(menu_id: str) -> Menu:
         return result
     connection.close()
 
-def get_random_recipes(type: str, amount: int):    
-    connection = create_connection(RECIPES_PATH)
+def get_random_recipes(type: str, amount: int, recipes_path : str = RECIPES_PATH):
+    connection = create_connection(recipes_path)
     cursor = connection.cursor()
     cursor.execute(f'SELECT recipe_id, calories, carbohydrates, fats, proteins, url, name, ingredients FROM Recipes WHERE recipe_type="{type}"')
 
@@ -98,8 +98,8 @@ def get_random_recipes(type: str, amount: int):
         result.append(recipe)
     return result
 
-def get_recipe_by_id(recipe_id : str):
-    connection = create_connection(RECIPES_PATH)
+def get_recipe_by_id(recipe_id : str, recipes_path : str = RECIPES_PATH):
+    connection = create_connection(recipes_path)
     cursor = connection.cursor()
     cursor.execute(f'SELECT recipe_id, calories, carbohydrates, fats, proteins, url, name, ingredients FROM Recipes WHERE recipe_id="{recipe_id}"')
 
@@ -115,8 +115,8 @@ def get_recipe_by_id(recipe_id : str):
         return recipe
     return None
 
-def get_ingredient_by_id(ingredient_id : str, unit : str = None):
-    connection = create_connection(INGREDIENTS_PATH)
+def get_ingredient_by_id(ingredient_id : str, unit : str = None, ingredients_path : str = INGREDIENTS_PATH):
+    connection = create_connection(ingredients_path)
     cursor = connection.cursor()
     cursor.execute(f'SELECT * FROM Ingredients WHERE id="{ingredient_id}"')
 
@@ -142,8 +142,8 @@ def get_ingredient_by_id(ingredient_id : str, unit : str = None):
 
     return None
 
-def save_menu_to_calendar(user_id : str, date : str, menu_id : str):
-    connection = create_connection(CALENDAR_PATH)
+def save_menu_to_calendar(user_id : str, date : str, menu_id : str, calendar_path : str = CALENDAR_PATH):
+    connection = create_connection(calendar_path)
     cursor = connection.cursor()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS Calendar (
@@ -163,8 +163,8 @@ def save_menu_to_calendar(user_id : str, date : str, menu_id : str):
 
     connection.close()
 
-def delete_menu_from_calendar(user_id : str, date : str, menu_id : str = None):
-    connection = create_connection(CALENDAR_PATH)
+def delete_menu_from_calendar(user_id : str, date : str, menu_id : str = None, calendar_path : str = CALENDAR_PATH):
+    connection = create_connection(calendar_path)
     cursor = connection.cursor()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS Calendar (
@@ -187,11 +187,11 @@ def delete_menu_from_calendar(user_id : str, date : str, menu_id : str = None):
 
     connection.close()
 
-def get_menues_from_calendar(user_id : str, date_start: str, date_end : str):
+def get_menues_from_calendar(user_id : str, date_start: str, date_end : str, calendar_path : str = CALENDAR_PATH):
     datestamp_start = int(date_start[6:10] + date_start[3:5] + date_start[0:2])
     datestamp_end = int(date_end[6:10] + date_end[3:5] + date_end[0:2])
     
-    connection = create_connection(CALENDAR_PATH)
+    connection = create_connection(calendar_path)
     cursor = connection.cursor()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS Calendar (
