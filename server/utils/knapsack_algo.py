@@ -2,9 +2,9 @@ from utils.data_classes import Menu
 
 
 def filter_knapsack(st, calories, carbs_seg, fats_seg, prots_seg):
-    carbs_l, carbs_r = calories * carbs_seg[0] / 100 / 4, calories * carbs_seg[1] / 100 / 4
-    fats_l, fats_r = calories * fats_seg[0] / 100 / 4, calories * fats_seg[1] / 100 / 4
-    prots_l, prots_r = calories * prots_seg[0] / 100 / 4, calories * prots_seg[1] / 100 / 4
+    carbs_r = calories * carbs_seg[1] / 100 / 4
+    fats_r = calories * fats_seg[1] / 100 / 9
+    prots_r = calories * prots_seg[1] / 100 / 4
     
     new_s = set()
     for menu in st:
@@ -15,7 +15,7 @@ def filter_knapsack(st, calories, carbs_seg, fats_seg, prots_seg):
 
 def final_filter_knapsack(st, calories, carbs_seg, fats_seg, prots_seg):
     carbs_l, carbs_r = calories * carbs_seg[0] / 100 / 4, calories * carbs_seg[1] / 100 / 4
-    fats_l, fats_r = calories * fats_seg[0] / 100 / 4, calories * fats_seg[1] / 100 / 4
+    fats_l, fats_r = calories * fats_seg[0] / 100 / 9, calories * fats_seg[1] / 100 / 9
     prots_l, prots_r = calories * prots_seg[0] / 100 / 4, calories * prots_seg[1] / 100 / 4
     
     new_s = set()

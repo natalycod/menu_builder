@@ -1,9 +1,9 @@
 import pytest
 
-import server.utils.yaml_schema_parser as yaml_schema_parser
+import utils.yaml_schema_parser as yaml_schema_parser
 
 
-yaml_objects = yaml_schema_parser.read_yaml('static/yaml_parser_objects.yaml')
+yaml_objects = yaml_schema_parser.read_yaml('tests/static/yaml_parser_objects.yaml')
 
 
 @pytest.mark.parametrize(
@@ -145,5 +145,5 @@ def test_ref_recursive(value, expected_result):
     ]
 )
 def test_test_handler(response_code, value, expected_result):
-    result = yaml_schema_parser.parse_json_to_handler_response(value, '/test_handler', 'post', response_code, 'static/yaml_parser_api.yaml')
+    result = yaml_schema_parser.parse_json_to_handler_response(value, '/test_handler', 'post', response_code, 'tests/static/yaml_parser_api.yaml')
     assert result == expected_result
