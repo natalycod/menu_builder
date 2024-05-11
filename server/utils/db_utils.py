@@ -64,6 +64,8 @@ def get_menu(menu_id: str, menues_path : str = MENUES_PATH) -> Menu:
     cursor.execute(f'SELECT * FROM Menues WHERE id="{menu_id}"')
     menues = cursor.fetchall()
     for menu in menues:
+        if menu is None:
+            continue
         result = Menu()
         result.id = menu_id
         result.nutrition = Nutrition(menu[1], menu[2], menu[3], menu[4])
