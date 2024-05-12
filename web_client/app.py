@@ -120,5 +120,14 @@ def build_menu_gen():
     menu_js = backend.backend_build_menu(request.args, menu_prev, current_user.calories)
     return redirect(web_client_url + "/build_menu/" + menu_js['id'] + params, code=302)
 
+@app.route('/save_menu/<string:menu_id>', methods=['GET', 'POST'])
+def save_menu(menu_id):
+    if request.method == 'POST':
+        date = request.form['date']
+        backend.backend_calendar_save_menu(current_user.username, date, menu_id)
+        return redirect(web_client_url + "/build_menu", code=302)
+    menu = backend.backend_get_menu(menu_id)
+    return render_template('save_menu.html', menu=menu)
+
 if __name__ == '__main__':
     app.run(debug=True)

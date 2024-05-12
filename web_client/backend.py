@@ -28,3 +28,11 @@ def backend_menu_get_grocery_list(menu_id):
     url = server_url + "/menu/get_grocery_list?menu_id=" + menu_id
     response = requests.get(url)
     return json.loads(response.text)
+
+def backend_calendar_save_menu(user_id, date, menu_id):
+    url = server_url + "/calendar/save_menu"
+    response = requests.post(url, json={
+        'user_id': user_id,
+        'menu_id': menu_id,
+        'date': date,
+    })

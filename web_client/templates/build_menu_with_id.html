@@ -1,18 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
+  <a href="/build_menu/gen?breakfast_fixed={{args.breakfast_fixed}}&lunch_fixed={{args.lunch_fixed}}&dinner_fixed={{args.dinner_fixed}}&menu_id={{menu.id}}" class="btn btn-secondary">Regen</a>
+  <a href="/save_menu/{{menu.id}}" class="btn btn-secondary">Save</a>
+  <p></p>
   <div class="row">
     <div class="col-sm-6 col-md-4 col-lg-4 mb-4">
       <div class="card">
         <div style="position: relative;">
-          <div class="card-body" style="min-height: 230px;">
+          <div class="card-body" style="min-height: 450px;">
             <h5 class="card-title">{{menu.breakfast_info.name}}</h5>
             <h6 class="card-subtitle mb-2 text-muted">Calories: {{menu.breakfast_info.nutrition.calories}}</h6>
             <img src="{{ menu.breakfast_info.image_url }}">
             {% if args.breakfast_fixed == 'true' %}
-              <a href="/build_menu/{{menu.id}}?breakfast_fixed=false&lunch_fixed={{args.lunch_fixed}}&dinner_fixed={{args.dinner_fixed}}" class="btn btn-primary" style="position: absolute; bottom: 15px; right: 15px;">Unfix</a>
+              <a href="/build_menu/{{menu.id}}?breakfast_fixed=false&lunch_fixed={{args.lunch_fixed}}&dinner_fixed={{args.dinner_fixed}}" class="btn btn-secondary" style="position: absolute; bottom: 15px; right: 15px;">Unfix</a>
             {% else %}
-              <a href="/build_menu/{{menu.id}}?breakfast_fixed=true&lunch_fixed={{args.lunch_fixed}}&dinner_fixed={{args.dinner_fixed}}" class="btn btn-primary" style="position: absolute; bottom: 15px; right: 15px;">Fix</a>
+              <a href="/build_menu/{{menu.id}}?breakfast_fixed=true&lunch_fixed={{args.lunch_fixed}}&dinner_fixed={{args.dinner_fixed}}" class="btn btn-secondary" style="position: absolute; bottom: 15px; right: 15px;">Fix</a>
             {% endif %}
           </div>
         </div>
@@ -21,14 +24,14 @@
     <div class="col-sm-6 col-md-4 col-lg-4 mb-4">
       <div class="card">
         <div style="position: relative;">
-          <div class="card-body" style="min-height: 230px;">
+          <div class="card-body" style="min-height: 450px;">
             <h5 class="card-title">{{menu.lunch_info.name}}</h5>
             <h6 class="card-subtitle mb-2 text-muted">Calories: {{menu.lunch_info.nutrition.calories}}</h6>
             <img src="{{ menu.lunch_info.image_url }}">
             {% if args.lunch_fixed == 'true' %}
-              <a href="/build_menu/{{menu.id}}?breakfast_fixed={{args.breakfast_fixed}}&lunch_fixed=false&dinner_fixed={{args.dinner_fixed}}" class="btn btn-primary" style="position: absolute; bottom: 15px; right: 15px;">Unfix</a>
+              <a href="/build_menu/{{menu.id}}?breakfast_fixed={{args.breakfast_fixed}}&lunch_fixed=false&dinner_fixed={{args.dinner_fixed}}" class="btn btn-secondary" style="position: absolute; bottom: 15px; right: 15px;">Unfix</a>
             {% else %}
-              <a href="/build_menu/{{menu.id}}?breakfast_fixed={{args.breakfast_fixed}}&lunch_fixed=true&dinner_fixed={{args.dinner_fixed}}" class="btn btn-primary" style="position: absolute; bottom: 15px; right: 15px;">Fix</a>
+              <a href="/build_menu/{{menu.id}}?breakfast_fixed={{args.breakfast_fixed}}&lunch_fixed=true&dinner_fixed={{args.dinner_fixed}}" class="btn btn-secondary" style="position: absolute; bottom: 15px; right: 15px;">Fix</a>
             {% endif %}
           </div>
         </div>
@@ -37,14 +40,14 @@
     <div class="col-sm-6 col-md-4 col-lg-4 mb-4">
       <div class="card">
         <div style="position: relative;">
-          <div class="card-body" style="min-height: 230px;">
+          <div class="card-body" style="min-height: 450px;">
             <h5 class="card-title">{{menu.dinner_info.name}}</h5>
             <h6 class="card-subtitle mb-2 text-muted">Calories: {{menu.dinner_info.nutrition.calories}}</h6>
             <img src="{{ menu.dinner_info.image_url }}">
             {% if args.dinner_fixed == 'true' %}
-              <a href="/build_menu/{{menu.id}}?breakfast_fixed={{args.breakfast_fixed}}&lunch_fixed={{args.lunch_fixed}}&dinner_fixed=false" class="btn btn-primary" style="position: absolute; bottom: 15px; right: 15px;">Unfix</a>
+              <a href="/build_menu/{{menu.id}}?breakfast_fixed={{args.breakfast_fixed}}&lunch_fixed={{args.lunch_fixed}}&dinner_fixed=false" class="btn btn-secondary" style="position: absolute; bottom: 15px; right: 15px;">Unfix</a>
             {% else %}
-              <a href="/build_menu/{{menu.id}}?breakfast_fixed={{args.breakfast_fixed}}&lunch_fixed={{args.lunch_fixed}}&dinner_fixed=true" class="btn btn-primary" style="position: absolute; bottom: 15px; right: 15px;">Fix</a>
+              <a href="/build_menu/{{menu.id}}?breakfast_fixed={{args.breakfast_fixed}}&lunch_fixed={{args.lunch_fixed}}&dinner_fixed=true" class="btn btn-secondary" style="position: absolute; bottom: 15px; right: 15px;">Fix</a>
             {% endif %}
           </div>
         </div>
@@ -67,5 +70,4 @@
       </div>
     </div>
   </div>
-  <a href="/build_menu/gen?breakfast_fixed={{args.breakfast_fixed}}&lunch_fixed={{args.lunch_fixed}}&dinner_fixed={{args.dinner_fixed}}&menu_id={{menu.id}}" class="btn btn-primary" style="position: absolute; bottom: 15px; right: 15px;">Gen</a>
 {% endblock %}
