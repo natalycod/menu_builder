@@ -34,4 +34,4 @@ def calendar_delete_menu_request():
 def calendar_get_grocery_list_request():
     return handler_calendar_get_grocery_list.main(request.args)
 
-app.run(debug=True)
+app.run(debug=True, port=6000)

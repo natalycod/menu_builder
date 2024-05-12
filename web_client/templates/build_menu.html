@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-lg-4 mb-4">
+      <div class="card">
+        <div style="position: relative;">
+          <div class="card-body" style="min-height: 230px;">
+            <h5 class="card-title">Breakfast</h5>
+            <h6 class="card-subtitle mb-2 text-muted">1/3 of daily ration</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-4 mb-4">
+      <div class="card">
+        <div style="position: relative;">
+          <div class="card-body" style="min-height: 230px;">
+            <h5 class="card-title">Lunch</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2/5 of daily ration</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-4 mb-4">
+      <div class="card">
+        <div style="position: relative;">
+          <div class="card-body" style="min-height: 230px;">
+            <h5 class="card-title">Dinner</h5>
+            <h6 class="card-subtitle mb-2 text-muted">4/15 of daily ration</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="/build_menu/hi" class="btn btn-primary" style="position: absolute; bottom: 15px; right: 15px;">Gen</a>
+{% endblock %}
