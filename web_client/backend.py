@@ -4,9 +4,9 @@ import requests
 
 server_url = "http://127.0.0.1:6000"
 
-def backend_build_menu(args, menu_prev):
+def backend_build_menu(args, menu_prev, calories):
     req = {
-        "calories": [1000]
+        "calories": [calories]
     }
     if 'breakfast_fixed' in args and args['breakfast_fixed'] == 'true':
         req['breakfast_id'] = menu_prev['breakfast_info']['recipe_id']

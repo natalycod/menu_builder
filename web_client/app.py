@@ -66,19 +66,18 @@ def register():
         username = request.form['username']
         password = request.form['password']
         email = request.form['email']
+        calories = request.form['calories']
         user = User.query.filter_by(username=username).first()
         if user:
             flash('Username already taken')
         else:
             hashed_password = generate_password_hash(password)
-            new_user = User(username=username, password=hashed_password, email=email)
+            new_user = User(username=username, password=hashed_password, email=email, calories=calories)
             db.session.add(new_user)
             db.session.commit()
             flash('Account created successfully')
             return redirect(url_for('login'))
     return render_template('register.html')
-
-# READY MENU UI
 
 @app.route('/menu/<string:menu_id>')
 def menu_page(menu_id):
@@ -118,7 +117,7 @@ def build_menu_gen():
     menu_prev = None
     if 'menu_id' in request.args:
         menu_prev = backend.backend_get_menu(request.args['menu_id'])
-    menu_js = backend.backend_build_menu(request.args, menu_prev)
+    menu_js = backend.backend_build_menu(request.args, menu_prev, current_user.calories)
     return redirect(web_client_url + "/build_menu/" + menu_js['id'] + params, code=302)
 
 if __name__ == '__main__':
