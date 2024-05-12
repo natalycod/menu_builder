@@ -1,30 +1,12 @@
 from flask import Flask, render_template, request, redirect
 import json
 import requests
+
+import backend
+
 # from models import Book, db
 
-server_url = "http://127.0.0.1:6000"
 web_client_url = "http://127.0.0.1:5000"
-
-def backend_build_menu(args, menu_prev):
-    req = {
-        "calories": [1000]
-    }
-    if 'breakfast_fixed' in args and args['breakfast_fixed'] == 'true':
-        req['breakfast_id'] = menu_prev['breakfast_info']['recipe_id']
-    if 'lunch_fixed' in args and args['lunch_fixed'] == 'true':
-        req['lunch_id'] = menu_prev['lunch_info']['recipe_id']
-    if 'dinner_fixed' in args and args['dinner_fixed'] == 'true':
-        req['dinner_id'] = menu_prev['dinner_info']['recipe_id']
-    
-    print("natalycod_debug: request = ", req)
-    response = requests.post(server_url + "/build_menu", json=req)
-    return json.loads(response.text)
-
-def backend_get_menu(menu_id):
-    url = server_url + "/get_menu?menu_id=" + menu_id
-    response = requests.get(url)
-    return json.loads(response.text)
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///books.db'
@@ -50,11 +32,12 @@ def build_menu_page():
 
 @app.route('/build_menu/<string:menu_id>')
 def build_menu_page_with_id(menu_id):
-    menu = backend_get_menu(menu_id)
-    return render_template('build_menu_with_id.html', menu=menu, args=request.args)
+    menu = backend.backend_get_menu(menu_id)
+    grocery_list = backend.backend_menu_get_grocery_list(menu_id)
+    return render_template('build_menu_with_id.html', menu=menu, grocery_list=grocery_list, args=request.args)
 
-@app.route('/build_menu/hi')
-def build_menu_hi():
+@app.route('/build_menu/gen')
+def build_menu_gen():
     params = ""
     if 'breakfast_fixed' in request.args:
         params += "?breakfast_fixed=" + request.args['breakfast_fixed']
@@ -73,8 +56,8 @@ def build_menu_hi():
     
     menu_prev = None
     if 'menu_id' in request.args:
-        menu_prev = backend_get_menu(request.args['menu_id'])
-    menu_js = backend_build_menu(request.args, menu_prev)
+        menu_prev = backend.backend_get_menu(request.args['menu_id'])
+    menu_js = backend.backend_build_menu(request.args, menu_prev)
     return redirect(web_client_url + "/build_menu/" + menu_js['id'] + params, code=302)
 
 if __name__ == '__main__':

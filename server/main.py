@@ -6,6 +6,7 @@ import handlers.handler_calendar_get_grocery_list as handler_calendar_get_grocer
 import handlers.handler_calendar_get_menues as handler_calendar_get_menues
 import handlers.handler_calendar_save_menu as handler_calendar_save_menu
 import handlers.handler_get_menu as handler_get_menu
+import handlers.handler_menu_get_grocery_list as handler_menu_get_grocery_list
 
 
 app = Flask("knapsack_app")
@@ -33,5 +34,9 @@ def calendar_delete_menu_request():
 @app.route("/calendar/get_grocery_list", methods=['GET'])
 def calendar_get_grocery_list_request():
     return handler_calendar_get_grocery_list.main(request.args)
+
+@app.route("/menu/get_grocery_list", methods=['GET'])
+def menu_get_grocery_list_request():
+    return handler_menu_get_grocery_list.main(request.args)
 
 app.run(debug=True, port=6000)

@@ -126,6 +126,23 @@ paths:
                             schema:
                                 $ref: '#/components/responses/CalendarGetGroceryListResponse'
 
+    /menu/get_grocery_list:
+        get:
+            description: Получить список ингредиентов для меню
+            parameters:
+              - name: menu_id
+                in: query
+                required: true
+                schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/responses/MenuGetGroceryListResponse'
+
 components:
     requests:
         BuildMenuRequest:
@@ -218,6 +235,11 @@ components:
                         $ref: '#/components/schemas/MenuShort'
 
         CalendarGetGroceryListResponse:
+            type: array
+            items:
+                $ref: '#/components/schemas/Ingredient'
+
+        MenuGetGroceryListResponse:
             type: array
             items:
                 $ref: '#/components/schemas/Ingredient'
