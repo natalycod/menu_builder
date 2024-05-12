@@ -4,6 +4,7 @@ import requests
 # from models import Book, db
 
 server_url = "http://127.0.0.1:6000"
+web_client_url = "http://127.0.0.1:5000"
 
 def backend_build_menu(args, menu_prev):
     req = {
@@ -70,9 +71,11 @@ def build_menu_hi():
     else:
         params += "&dinner_fixed=false"
     
-    menu_prev = backend_get_menu(request.args['menu_id'])
+    menu_prev = None
+    if 'menu_id' in request.args:
+        menu_prev = backend_get_menu(request.args['menu_id'])
     menu_js = backend_build_menu(request.args, menu_prev)
-    return redirect("http://127.0.0.1:5000/build_menu/" + menu_js['id'] + params, code=302)
+    return redirect(web_client_url + "/build_menu/" + menu_js['id'] + params, code=302)
 
 if __name__ == '__main__':
     app.run(debug=True)
