@@ -1,7 +1,7 @@
 import requests
 import json
 
-token = "6721741039:AAFQi6hA-qkGMtO1Af6KXtr1maiVa0xDr98"
+token = "TG_BOT_TOKEN"
 
 server_url = "http://127.0.0.1:5000"
 
