@@ -10,7 +10,7 @@ CARBS_L, CARBS_R = 10, 15
 FATS_L, FATS_R = 15, 30
 PROTS_L, PROTS_R = 55, 75
 
-RECIPES_AMOUNT_PER_MEAL = 60
+RECIPES_AMOUNT_PER_MEAL = 100
 RECIPES_VAR_AMOUNT = 1
 BREAKFAST_PART = 1 / 3
 LUNCH_PART = 2 / 5
@@ -62,7 +62,10 @@ def main(body):
 
         menues = knapsack_algo.build_knapsack(calories, [bs, ls, ds], [CARBS_L, CARBS_R], [FATS_L, FATS_R], [PROTS_L, PROTS_R])
 
-    menu = menues[random.randint(0, len(menues) - 1)]
+    menu = menues[0]
+    for menu_built in menues:
+        if menu_built.quality > menu.quality:
+            menu = menu_built
 
     menu.id = db_utils.generate_id()
     db_utils.save_menu(menu)

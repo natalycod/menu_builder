@@ -112,12 +112,20 @@ class Menu:
         self.id = ""
         self.nutrition = Nutrition(0, 0, 0, 0)
         self.recipes = []
+
+        self.ingredients = set()
+        self.quality = 0
     
     def __add__(self, recipe : Recipe):
         res = Menu()
         res.nutrition = self.nutrition + recipe.nutrition
         res.recipes = self.recipes[:]
         res.recipes.append(recipe)
+
+        for ingr in recipe.ingredients:
+            if ingr.id in res.ingredients:
+                res.quality += 1
+            res.ingredients.add(ingr.id)
         return res
     
     def to_json(self):
