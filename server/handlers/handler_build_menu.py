@@ -60,12 +60,14 @@ def main(body):
         ls = prepare_recipes(lunches, calories * LUNCH_PART, RECIPES_VAR_AMOUNT)
         ds = prepare_recipes(dinners, calories * DINNER_PART, RECIPES_VAR_AMOUNT)
 
-        menues = knapsack_algo.build_knapsack(calories, [bs, ls, ds], [CARBS_L, CARBS_R], [FATS_L, FATS_R], [PROTS_L, PROTS_R])
+        menues = knapsack_algo.build_real_knapsack(calories, [bs, ls, ds], [CARBS_L, CARBS_R], [FATS_L, FATS_R], [PROTS_L, PROTS_R])
 
     menu = menues[0]
     for menu_built in menues:
         if menu_built.quality > menu.quality:
             menu = menu_built
+
+    print("Final quality: ", menu.quality)
 
     menu.id = db_utils.generate_id()
     db_utils.save_menu(menu)

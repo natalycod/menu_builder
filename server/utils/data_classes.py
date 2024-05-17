@@ -127,7 +127,19 @@ class Menu:
                 res.quality += 1
             res.ingredients.add(ingr.id)
         return res
-    
+
+    def __mul__(self, x : float):
+        res = Menu()
+        res.id = self.id
+        res.nutrition = self.nutrition * x
+        res.recipes = []
+        for recipe in self.recipes:
+            res.recipes.append(recipe * x)
+
+        res.ingredients = self.ingredients
+        res.quality = self.quality
+        return res
+
     def to_json(self):
         return {
             "id": self.id,

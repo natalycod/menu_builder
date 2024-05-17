@@ -1,0 +1,42 @@
+For amount = 10:
+Successful: 26, mean quality: 1.38462, mean ticks: 91080.2
+For amount = 20:
+Successful: 41, mean quality: 1.65854, mean ticks: 291698
+For amount = 30:
+Successful: 44, mean quality: 1.59091, mean ticks: 459892
+For amount = 40:
+Successful: 50, mean quality: 1.54, mean ticks: 697156
+For amount = 50:
+Successful: 55, mean quality: 1.43636, mean ticks: 971761
+For amount = 60:
+Successful: 55, mean quality: 1.63636, mean ticks: 1.17148e+06
+For amount = 70:
+Successful: 54, mean quality: 1.7037, mean ticks: 1.33477e+06
+For amount = 80:
+Successful: 49, mean quality: 1.67347, mean ticks: 1.37628e+06
+For amount = 90:
+Successful: 56, mean quality: 1.69643, mean ticks: 1.7758e+06
+For amount = 100:
+Successful: 58, mean quality: 1.74138, mean ticks: 2.05519e+06
+
+
+For amount = 10:
+Successful: 32, mean quality: 1.6875, mean ticks: 111696
+For amount = 20:
+Successful: 44, mean quality: 1.5, mean ticks: 304326
+For amount = 30:
+Successful: 50, mean quality: 1.54, mean ticks: 518754
+For amount = 40:
+Successful: 57, mean quality: 1.63158, mean ticks: 786875
+For amount = 50:
+Successful: 56, mean quality: 1.60714, mean ticks: 969044
+For amount = 60:
+Successful: 62, mean quality: 1.70968, mean ticks: 1.28361e+06
+For amount = 70:
+Successful: 66, mean quality: 1.78788, mean ticks: 1.59398e+06
+For amount = 80:
+Successful: 59, mean quality: 1.84746, mean ticks: 1.6413e+06
+For amount = 90:
+Successful: 62, mean quality: 2, mean ticks: 1.93422e+06
+For amount = 100:
+Successful: 52, mean quality: 1.94231, mean ticks: 1.79275e+06

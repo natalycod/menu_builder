@@ -1,0 +1,40 @@
+For amount = 1000:
+Successful: 36, mean quality: 1.69444, mean ticks: 12628.7
+For amount = 2000:
+Successful: 62, mean quality: 1.90323, mean ticks: 43433.7
+For amount = 3000:
+Successful: 70, mean quality: 1.8, mean ticks: 73692.4
+For amount = 4000:
+Successful: 72, mean quality: 1.93056, mean ticks: 100587
+For amount = 5000:
+Successful: 89, mean quality: 1.93258, mean ticks: 155857
+For amount = 6000:
+Successful: 92, mean quality: 2.21739, mean ticks: 202118
+For amount = 7000:
+Successful: 90, mean quality: 2.17778, mean ticks: 226694
+For amount = 8000:
+Successful: 94, mean quality: 2.25532, mean ticks: 270598
+For amount = 9000:
+Successful: 96, mean quality: 2.10417, mean ticks: 307644
+For amount = 10000:
+Successful: 100, mean quality: 2.22, mean ticks: 357477
+For amount = 11000:
+Successful: 100, mean quality: 2.5, mean ticks: 400832
+For amount = 12000:
+Successful: 99, mean quality: 2.60606, mean ticks: 429050
+For amount = 13000:
+Successful: 96, mean quality: 2.65625, mean ticks: 448983
+For amount = 14000:
+Successful: 100, mean quality: 2.55, mean ticks: 498958
+For amount = 15000:
+Successful: 100, mean quality: 2.67, mean ticks: 536106
+For amount = 16000:
+Successful: 99, mean quality: 2.73737, mean ticks: 560646
+For amount = 17000:
+Successful: 100, mean quality: 2.81, mean ticks: 604892
+For amount = 18000:
+Successful: 100, mean quality: 2.83, mean ticks: 641379
+For amount = 19000:
+Successful: 100, mean quality: 2.92, mean ticks: 688340
+For amount = 20000:
+Successful: 100, mean quality: 2.79, mean ticks: 734044
