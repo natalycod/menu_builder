@@ -1,13 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, login_user, current_user, logout_user
 from werkzeug.security import check_password_hash, generate_password_hash
+import datetime
+import time
 import json
-import requests
 
 import backend
 from models import User, db
 
-# from models import Book, db
+DAY_SECONDS = 60 * 60 * 24
 
 web_client_url = "http://127.0.0.1:5000"
 
@@ -81,9 +82,7 @@ def register():
 
 @app.route('/menu/<string:menu_id>')
 def menu_page(menu_id):
-    f = open("test_data/menu.json")
-    menu = json.load(f)
-    f.close()
+    menu = backend.backend_get_menu(menu_id)
     return render_template('menu.html', menu=menu)
 
 @app.route('/build_menu')
@@ -128,6 +127,56 @@ def save_menu(menu_id):
         return redirect(web_client_url + "/build_menu", code=302)
     menu = backend.backend_get_menu(menu_id)
     return render_template('save_menu.html', menu=menu)
+
+@app.route('/calendar')
+def calendar_page():
+    date_today = backend.get_today_date()
+    return redirect(web_client_url + "/calendar/" + date_today, code=302)
+
+
+@app.route('/calendar/delete_menu/<string:date>/<string:date_delete>', methods=['GET'])
+def calendar_delete_menu_page(date, date_delete):
+    backend.backend_calendar_delete_menu(current_user.username, date_delete)
+    return redirect(web_client_url + "/calendar/" + date, code=302)
+
+
+@app.route('/calendar/<string:date>', methods=['GET'])
+def calendar_date_page(date):
+    date_prev = backend.get_previous_date(date)
+    date_next = backend.get_next_date(date)
+    
+    menues = backend.backend_calendar_get_menues(current_user.username, date_prev, date_next)
+    menu_prev = None
+    menu = None
+    menu_next = None
+    for menu_ in menues:
+        if menu_['date'] == date_prev:
+            menu_prev = menu_['menu']
+        if menu_['date'] == date_next:
+            menu_next = menu_['menu']
+        if menu_['date'] == date:
+            menu = menu_['menu']
+
+    print(date_prev, date, date_next)
+    return render_template(
+        'calendar.html',
+        main={
+            'date': date,
+            'has_menu': menu is not None,
+            'menu': menu,
+        },
+        prev={
+            'date': date_prev,
+            'has_menu': menu_prev is not None,
+            'menu': menu_prev,
+        },
+        next={
+            'date': date_next,
+            'has_menu': menu_next is not None,
+            'menu': menu_next,
+        },
+        link_prev="/calendar/" + date_prev,
+        link_next="/calendar/" + date_next)
 
 if __name__ == '__main__':
     app.run(debug=True)

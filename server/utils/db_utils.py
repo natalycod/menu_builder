@@ -204,7 +204,7 @@ def get_menues_from_calendar(user_id : str, date_start: str, date_end : str, cal
     );''')
     connection.commit()
 
-    cursor.execute(f'SELECT date, menu_id FROM Calendar WHERE datestamp>={datestamp_start} AND datestamp<={datestamp_end} ORDER BY datestamp')
+    cursor.execute(f'SELECT date, menu_id FROM Calendar WHERE user_id="{user_id}" AND datestamp>={datestamp_start} AND datestamp<={datestamp_end} ORDER BY datestamp')
 
     response = cursor.fetchall()
     result = []

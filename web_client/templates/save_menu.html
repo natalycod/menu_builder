@@ -9,7 +9,11 @@
           <div class="card-body" style="min-height: 450px;">
             <h5 class="card-title">{{menu.breakfast_info.name}}</h5>
             <h6 class="card-subtitle mb-2 text-muted">Calories: {{menu.breakfast_info.nutrition.calories}}</h6>
-            <img src="{{ menu.breakfast_info.image_url }}">
+            {% if menu.breakfast_info.image_url != "None" %}
+              <td class="leftcol" width="30%"> <img src="{{ menu.breakfast_info.image_url }}"> </td>
+            {% else %}
+              <td class="leftcol" width="30%"> <img src="{{ url_for('static', filename='images/default_recipe.png') }}" width=250> </td>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -20,7 +24,11 @@
           <div class="card-body" style="min-height: 450px;">
             <h5 class="card-title">{{menu.lunch_info.name}}</h5>
             <h6 class="card-subtitle mb-2 text-muted">Calories: {{menu.lunch_info.nutrition.calories}}</h6>
-            <img src="{{ menu.lunch_info.image_url }}">
+            {% if menu.lunch_info.image_url != "None" %}
+              <td class="leftcol" width="30%"> <img src="{{ menu.lunch_info.image_url }}"> </td>
+            {% else %}
+              <td class="leftcol" width="30%"> <img src="{{ url_for('static', filename='images/default_recipe.png') }}" width=250> </td>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -31,7 +39,11 @@
           <div class="card-body" style="min-height: 450px;">
             <h5 class="card-title">{{menu.dinner_info.name}}</h5>
             <h6 class="card-subtitle mb-2 text-muted">Calories: {{menu.dinner_info.nutrition.calories}}</h6>
-            <img src="{{ menu.dinner_info.image_url }}">
+            {% if menu.dinner_info.image_url != "None" %}
+              <td class="leftcol" width="30%"> <img src="{{ menu.dinner_info.image_url }}"> </td>
+            {% else %}
+              <td class="leftcol" width="30%"> <img src="{{ url_for('static', filename='images/default_recipe.png') }}" width=250> </td>
+            {% endif %}
           </div>
         </div>
       </div>

@@ -148,3 +148,4 @@ class Menu:
             "lunch_info": self.recipes[1].to_json(),
             "dinner_info": self.recipes[2].to_json(),
         }
+    

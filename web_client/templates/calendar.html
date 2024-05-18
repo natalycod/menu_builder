@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <p></p>
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-lg-1 mb-4">
+        <div class="card">
+          <a href="{{link_prev}}" class="btn btn-secondary">
+            <img src="{{ url_for('static', filename='images/pr.png') }}" alt="Previous action" width="50">
+          </a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4 col-lg-1 mb-4">
+        <div class="card">
+          <a href="{{link_next}}" class="btn btn-secondary">
+            <img src="{{ url_for('static', filename='images/nxt.png') }}" alt="Previous action" width="50">
+          </a>
+        </div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-lg-4 mb-4">
+      <div class="card">
+        <div style="position: relative;">
+            {% if prev.has_menu %}
+            <div class="card-body" style="min-height: 230px;">
+              <h5 class="card-title">{{prev.date}}</h5>
+              <p></p>
+              <h6 class="card-subtitle mb-2 text-muted">{{prev.menu.breakfast_info.name}}</h6>
+              <h6 class="card-subtitle mb-2 text-muted">{{prev.menu.lunch_info.name}}</h6>
+              <h6 class="card-subtitle mb-2 text-muted">{{prev.menu.dinner_info.name}}</h6>
+              <a href="/menu/{{prev.menu.id}}" class="btn btn-secondary" style="position: absolute; bottom: 15px; left: 15px;">More</a>
+              <a href="/calendar/delete_menu/{{main.date}}/{{prev.date}}" class="btn btn-secondary" style="position: absolute; bottom: 15px; right: 15px;">Delete</a>
+            </div>
+          {% else %}
+            <div class="card-body" style="min-height: 230px;">
+              <h5 class="card-title">{{prev.date}}</h5>
+              <a href="/build_menu/gen" class="btn btn-secondary" style="position: absolute; bottom: 15px; right: 15px;">Gen</a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-4 mb-4">
+      <div class="card">
+        <div style="position: relative;">
+          {% if main.has_menu %}
+            <div class="card-body" style="min-height: 230px;">
+              <h5 class="card-title">{{main.date}}</h5>
+              <p></p>
+              <h6 class="card-subtitle mb-2 text-muted">{{main.menu.breakfast_info.name}}</h6>
+              <h6 class="card-subtitle mb-2 text-muted">{{main.menu.lunch_info.name}}</h6>
+              <h6 class="card-subtitle mb-2 text-muted">{{main.menu.dinner_info.name}}</h6>
+              <a href="/menu/{{main.menu.id}}" class="btn btn-secondary" style="position: absolute; bottom: 15px; left: 15px;">More</a>
+              <a href="/calendar/delete_menu/{{main.date}}/{{main.date}}" class="btn btn-secondary" style="position: absolute; bottom: 15px; right: 15px;">Delete</a>
+            </div>
+          {% else %}
+            <div class="card-body" style="min-height: 230px;">
+              <h5 class="card-title">{{main.date}}</h5>
+              <a href="/build_menu/gen" class="btn btn-secondary" style="position: absolute; bottom: 15px; right: 15px;">Gen</a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-4 mb-4">
+      <div class="card">
+        <div style="position: relative;">
+          {% if next.has_menu %}
+            <div class="card-body" style="min-height: 230px;">
+              <h5 class="card-title">{{next.date}}</h5>
+              <p></p>
+              <h6 class="card-subtitle mb-2 text-muted">{{next.menu.breakfast_info.name}}</h6>
+              <h6 class="card-subtitle mb-2 text-muted">{{next.menu.lunch_info.name}}</h6>
+              <h6 class="card-subtitle mb-2 text-muted">{{next.menu.dinner_info.name}}</h6>
+              <a href="/menu/{{next.menu.id}}" class="btn btn-secondary" style="position: absolute; bottom: 15px; left: 15px;">More</a>
+              <a href="/calendar/delete_menu/{{main.date}}/{{next.date}}" class="btn btn-secondary" style="position: absolute; bottom: 15px; right: 15px;">Delete</a>
+            </div>
+          {% else %}
+            <div class="card-body" style="min-height: 230px;">
+              <h5 class="card-title">{{next.date}}</h5>
+              <a href="/build_menu/gen" class="btn btn-secondary" style="position: absolute; bottom: 15px; right: 15px;">Gen</a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
