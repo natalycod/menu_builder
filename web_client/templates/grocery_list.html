@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="card">
+    <div style="position: relative;">
+      <div class="card-body" style="min-height: 230px;">
+        <h5 class="card-title">Grocery List</h5>
+        <table>
+          {% for ingredient in grocery_list %}
+            <tr>
+              <td> {{ingredient.name}} </td>
+              <td> &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp; </td>
+              <td> {{ingredient.unit_amount}} {{ingredient.unit}}<br/> </td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}

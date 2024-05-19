@@ -51,6 +51,11 @@ def backend_calendar_get_menues(user_id, date_start, date_end):
     response = requests.get(url)
     return json.loads(response.text)
 
+def backend_calendar_get_grocery_list(user_id, date_start, date_end):
+    url = server_url + "/calendar/get_grocery_list?user_id=" + user_id + "&date_start=" + date_start + "&date_end=" + date_end
+    response = requests.get(url)
+    return json.loads(response.text)
+
 def convert_date_to_string(day : int, month : int, year: int) -> str:
     day_s = str(day)
     month_s = str(month)

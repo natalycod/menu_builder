@@ -86,4 +86,21 @@
       </div>
     </div>
   </div>
+  <div class="card">
+    <div class="card-body">
+      <form method="post">
+        <div class="mb-3">
+          <label for="date" class="form-label">Date Start (DD.MM.YYYY format):</label>
+          <input type="text" class="form-control" id="date_start" name="date_start" required>
+        </div>
+        <div class="mb-3">
+          <label for="date" class="form-label">Date End (DD.MM.YYYY format):</label>
+          <input type="text" class="form-control" id="date_end" name="date_end" required>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-secondary">Get Grocery List</button>
+        </div>
+      </form>
+    </div>
+  </div>
 {% endblock %}

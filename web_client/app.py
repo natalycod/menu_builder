@@ -140,8 +140,12 @@ def calendar_delete_menu_page(date, date_delete):
     return redirect(web_client_url + "/calendar/" + date, code=302)
 
 
-@app.route('/calendar/<string:date>', methods=['GET'])
+@app.route('/calendar/<string:date>', methods=['GET', 'POST'])
 def calendar_date_page(date):
+    if request.method == 'POST':
+        date_start = request.form['date_start']
+        date_end = request.form['date_end']
+        return redirect(web_client_url + "/grocery_list/" + date_start + '/' + date_end, code=302)
     date_prev = backend.get_previous_date(date)
     date_next = backend.get_next_date(date)
     
@@ -177,6 +181,11 @@ def calendar_date_page(date):
         },
         link_prev="/calendar/" + date_prev,
         link_next="/calendar/" + date_next)
+
+@app.route('/grocery_list/<string:date_start>/<string:date_end>', methods=['GET'])
+def grocery_list_page(date_start, date_end):
+    grocery_list = backend.backend_calendar_get_grocery_list(current_user.username, date_start, date_end)
+    return render_template('grocery_list.html', grocery_list=grocery_list)
 
 if __name__ == '__main__':
     app.run(debug=True)
